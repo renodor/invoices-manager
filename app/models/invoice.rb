@@ -5,7 +5,7 @@ class Invoice < ApplicationRecord
 
   belongs_to :user
   belongs_to :client
-  belongs_to :bank, optional: true
+  belongs_to :bank
   has_many :line_items, dependent: :destroy
   has_many :days, dependent: :destroy
 
