@@ -9,8 +9,13 @@ class User < ApplicationRecord
 
   has_many :invoices, dependent: :destroy
   has_many :clients, dependent: :destroy
+  has_many :banks, dependent: :destroy
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def default_bank
+    banks.find_by(is_default: true)
   end
 end

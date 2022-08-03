@@ -5,6 +5,7 @@ class Invoice < ApplicationRecord
 
   belongs_to :user
   belongs_to :client
+  belongs_to :bank, optional: true
   has_many :line_items, dependent: :destroy
   has_many :days, dependent: :destroy
 
@@ -16,6 +17,7 @@ class Invoice < ApplicationRecord
   scope :current_year, -> { where('date > ?', DateTime.new(Time.current.year, 1, 1)) }
 
   after_initialize :set_date_and_number, if: :new_record?
+  before_validation :set_bank, if: :new_record?
 
   def pretty_date
     date.strftime('%d/%m/%Y')
@@ -39,5 +41,9 @@ class Invoice < ApplicationRecord
   def set_date_and_number
     self.date = Date.current
     self.number = Invoice.next_number
+  end
+
+  def set_bank
+    self.bank = user.default_bank
   end
 end

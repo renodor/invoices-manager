@@ -1,0 +1,53 @@
+.invoice-payment {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--space-xs);
+  margin-top: var(--space-m);
+  padding: var(--space-s) var(--space-m);
+  transition: box-shadow 300ms;
+  &:not(.locked):hover {
+    box-shadow: var(--shadow-small);
+  }
+
+  &__line {
+    display: flex;
+    align-items: center;
+    column-gap: var(--space-s);
+    span:first-child {
+      min-width: 60px;
+    }
+    span:last-child {
+      min-width: 60px;
+      font-family: monospace;
+    }
+  }
+
+  &__disclaimer {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-s);
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    column-gap: var(--space-s);
+  }
+
+  &__input {
+    flex: 0 0 40%;
+  }
+
+  &--focus {
+    box-shadow: var(--shadow-small);
+  }
+
+  &--form {
+    align-items: center;
+    column-gap: var(--space-s);
+    select {
+      padding: var(--space-xxs);
+    }
+  }
+}

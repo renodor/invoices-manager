@@ -1,9 +1,14 @@
 <%= turbo_frame_tag dom_id(invoice, :payment) do %>
-  <div class="invoice__payment">
-    <div class="invoice__payment__line bold"><%= t('payment_informations') %></div>
-    <div class="invoice__payment__line"><span>BIC :</span><span><%= invoice.user.bic %></span></div>
-    <div class="invoice__payment__line"><span>IBAN :</span><span><%= invoice.user.iban %></span></div>
-    <div class="invoice__payment__line"><span><%= t('payment_label') %> :</span><span class="bold"><%= invoice.number %></span></div>
-    <p class="invoice__payment__disclaimer"><%= t('payment_label_explaination') %></p>
+  <div class="invoice-payment <%= class_names(locked: invoice.locked?) %>">
+    <div class="invoice-payment__line bold"><%= t('payment_informations') %></div>
+    <div class="invoice-payment__line"><span>BIC :</span><span><%= bank.bic %></span></div>
+    <div class="invoice-payment__line"><span>IBAN :</span><span><%= bank.iban %></span></div>
+    <div class="invoice-payment__line"><span><%= t('payment_label') %> :</span><span class="bold"><%= invoice.number %></span></div>
+    <p class="invoice-payment__disclaimer"><%= t('payment_label_explaination') %></p>
+    <% unless invoice.locked %>
+      <%= link_to '',
+          [:edit_bank, invoice],
+          class: "full-absolute #{hide_on_pdf}" %>
+    <% end %>
   </div>
 <% end %>

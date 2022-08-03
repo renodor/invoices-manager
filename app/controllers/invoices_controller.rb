@@ -9,6 +9,7 @@ class InvoicesController < ApplicationController
 
   def show
     @client = @invoice.client
+    @bank = @invoice.bank
   end
 
   def new
@@ -58,12 +59,30 @@ class InvoicesController < ApplicationController
 
   def update_infos
     if @invoice.update(invoice_params)
+      @bank = @invoice.bank
       respond_to do |format|
         format.html { redirect_to invoices_path, notice: 'Invoice was successfully updated.' }
         format.turbo_stream { flash.now[:notice] = 'Invoice was successfully updated.' }
       end
     else
       render :edit_infos, status: :unprocessable_entity
+    end
+  end
+
+  def edit_bank
+    @banks = current_user.banks
+    @bank = @invoice.bank
+  end
+
+  def update_bank
+    if @invoice.update(invoice_params)
+      @bank = @invoice.bank
+      respond_to do |format|
+        format.html { redirect_to invoices_path, notice: 'Invoice was successfully updated.' }
+        format.turbo_stream { flash.now[:notice] = 'Invoice was successfully updated.' }
+      end
+    else
+      render :edit_bank, status: :unprocessable_entity
     end
   end
 
@@ -74,7 +93,7 @@ class InvoicesController < ApplicationController
   end
 
   def export_to_pdf
-    html = render_to_string(action: :show, layout: 'pdf', formats: [:html], locals: { :@invoice => @invoice, :@client => @invoice.client })
+    html = render_to_string(action: :show, layout: 'pdf', formats: [:html], locals: { :@invoice => @invoice, :@client => @invoice.client, :@bank => @invoice.bank })
     pdf = Grover::HTMLPreprocessor.process(html, Rails.application.config.asset_host, 'http')
 
     respond_to do |format|
@@ -92,7 +111,7 @@ class InvoicesController < ApplicationController
   end
 
   def invoice_params
-    params.require(:invoice).permit(:name, :date, :title, :number, :client_id, :locked)
+    params.require(:invoice).permit(:name, :date, :title, :number, :client_id, :bank_id, :locked)
   end
 
   def render_pdf(html, filename:)

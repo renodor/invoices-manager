@@ -61,7 +61,7 @@
       <p class="invoice__no-tva"><%= t('no_tva_explaination') %></p>
     </div>
 
-    <%= render 'payment', invoice: @invoice %>
+    <%= render 'payment', invoice: @invoice, bank: @bank %>
   </div>
 
   <%= render 'days/calendar', invoice: @invoice %>

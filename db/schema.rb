@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_07_130655) do
+ActiveRecord::Schema.define(version: 2022_08_03_073103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "banks", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "bic", null: false
+    t.string "iban", null: false
+    t.boolean "is_default", default: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_banks_on_user_id"
+  end
 
   create_table "clients", force: :cascade do |t|
     t.string "name", null: false
@@ -49,6 +60,8 @@ ActiveRecord::Schema.define(version: 2022_06_07_130655) do
     t.bigint "user_id", null: false
     t.boolean "locked", default: false
     t.datetime "deleted_at", precision: 6
+    t.bigint "bank_id"
+    t.index ["bank_id"], name: "index_invoices_on_bank_id"
     t.index ["client_id"], name: "index_invoices_on_client_id"
     t.index ["user_id"], name: "index_invoices_on_user_id"
   end
@@ -77,8 +90,6 @@ ActiveRecord::Schema.define(version: 2022_06_07_130655) do
     t.string "country"
     t.string "website"
     t.string "siren"
-    t.string "bic"
-    t.string "iban"
     t.string "first_name"
     t.string "last_name"
     t.integer "genre"
@@ -88,8 +99,10 @@ ActiveRecord::Schema.define(version: 2022_06_07_130655) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "banks", "users"
   add_foreign_key "clients", "users"
   add_foreign_key "days", "invoices"
+  add_foreign_key "invoices", "banks"
   add_foreign_key "invoices", "clients"
   add_foreign_key "invoices", "users"
   add_foreign_key "line_items", "invoices"

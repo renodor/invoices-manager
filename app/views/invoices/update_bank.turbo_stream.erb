@@ -1,9 +1,4 @@
-<%= turbo_stream.replace dom_id(@invoice, :infos) do %>
-  <%= render 'invoices/infos', invoice: @invoice %>
-<% end %>
-
 <%= turbo_stream.replace dom_id(@invoice, :payment) do %>
   <%= render 'invoices/payment', invoice: @invoice, bank: @bank %>
 <% end %>
-
 <%= render_turbo_stream_flash_messages %>

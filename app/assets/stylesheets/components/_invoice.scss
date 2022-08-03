@@ -78,32 +78,6 @@
     }
   }
 
-  &__payment {
-    display: flex;
-    flex-direction: column;
-    row-gap: var(--space-xs);
-    margin-top: var(--space-m);
-    padding: var(--space-s) var(--space-m);
-
-    &__line {
-      display: flex;
-      align-items: center;
-      column-gap: var(--space-s);
-      span:first-child {
-        min-width: 60px;
-      }
-      span:last-child {
-        min-width: 60px;
-        font-family: monospace;
-      }
-    }
-
-    &__disclaimer {
-      color: var(--color-text-muted);
-      font-size: var(--font-size-s);
-    }
-  }
-
   &--form {
     flex-direction: column;
   }

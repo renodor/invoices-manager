@@ -18,6 +18,8 @@ Rails.application.routes.draw do
       patch :update_client
       get :edit_infos
       patch :update_infos
+      get :edit_bank
+      patch :update_bank
       get :export_to_pdf
     end
   end
