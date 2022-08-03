@@ -19,6 +19,8 @@ class Invoice < ApplicationRecord
   after_initialize :set_date_and_number, if: :new_record?
   before_validation :set_bank, if: :new_record?
 
+  TVA = 0.2.freeze
+
   def pretty_date
     date.strftime('%d/%m/%Y')
   end
@@ -27,8 +29,16 @@ class Invoice < ApplicationRecord
     "#{number}-#{client.name.downcase.gsub(' ', '_')}-#{title.downcase.gsub(' ', '_')}-#{date}.pdf"
   end
 
-  def total_price
+  def total_without_taxes
     line_items.sum(&:total_price)
+  end
+
+  def tva
+    total_without_taxes * TVA
+  end
+
+  def total
+    with_tva ? total_without_taxes + tva : total_without_taxes
   end
 
   def self.next_number

@@ -13,7 +13,9 @@ fr:
       user:
         email: Email
         password: Mot de passe
-    label:
+    labels:
+      invoice:
+        with_tva: Inclure la TVA ?
       day:
         worked: Jour travaillé?
     prompts:

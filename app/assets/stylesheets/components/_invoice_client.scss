@@ -1,7 +1,7 @@
 .invoice-client {
   position: relative;
   margin-top: var(--space-m);
-  padding: var(--space-s) var(--space-m);
+  padding: var(--space-xs) var(--space-m);
   transition: box-shadow 300ms;
   &:not(.locked):hover {
     box-shadow: var(--shadow-small);

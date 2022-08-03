@@ -41,6 +41,9 @@
           <span class="line-item__description"><%= t('description') %></span>
           <span class="line-item__quantity"><%= t('qty') %></span>
           <span class="line-item__price"><%= t('unit_price') %></span>
+          <% if @invoice.with_tva? %>
+            <span class="line-item__tva"><%= t('tva') %></span>
+          <% end %>
           <span class="line-item__total"><%= t('ht_total') %></span>
         </div>
         <%= turbo_frame_tag nested_dom_id(@invoice, 'line_items') do %>
@@ -58,7 +61,9 @@
           <%= render 'total', invoice: @invoice %>
         <% end %>
       </div>
-      <p class="invoice__no-tva"><%= t('no_tva_explaination') %></p>
+      <% unless @invoice.with_tva? %>
+        <p class="invoice__no-tva"><%= t('no_tva_explaination') %></p>
+      <% end %>
     </div>
 
     <%= render 'payment', invoice: @invoice, bank: @bank %>

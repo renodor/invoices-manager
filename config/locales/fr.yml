@@ -11,6 +11,7 @@ fr:
   description: Description
   qty: Qté
   unit_price: Prix unitaire
+  tva: TVA %
   ht_total: Total HT
   total: Total
   no_tva_explaination: TVA non applicable, article 293 B du Code Général des Impôts

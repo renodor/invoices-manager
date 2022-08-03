@@ -111,7 +111,7 @@ class InvoicesController < ApplicationController
   end
 
   def invoice_params
-    params.require(:invoice).permit(:name, :date, :title, :number, :client_id, :bank_id, :locked)
+    params.require(:invoice).permit(:name, :date, :title, :number, :client_id, :bank_id, :locked, :with_tva)
   end
 
   def render_pdf(html, filename:)

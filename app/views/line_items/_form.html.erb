@@ -10,6 +10,9 @@
                 wrapper_html: { class: 'line-item__quantity' } %>
     <%= f.input :unit_price,
                 wrapper_html: { class: 'line-item__price' } %>
+    <% if invoice.with_tva? %>
+      <span class="line-item__tva"><%= number_to_percentage(Invoice::TVA * 100, precision: 0) %></span>
+    <% end %>
 
     <% form_id = f.id %>
   <% end %>

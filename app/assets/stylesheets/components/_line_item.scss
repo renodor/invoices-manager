@@ -30,6 +30,17 @@
     }
   }
 
+  &__tva {
+    flex: 0 0 80px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    input {
+      text-align: right;
+    }
+  }
+
+
   &__total {
     flex: 0 0 120px;
   }
@@ -43,11 +54,11 @@
   }
 
   &__actions {
-    flex: 0 0 150px;
+    flex: 0 0 125px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    column-gap: var(--space-s);
+    column-gap: var(--space-xs);
   }
 
   &--header {
