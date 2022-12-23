@@ -9,8 +9,8 @@
                   data: { turbo: false },
                   class: "btn btn--dark" %>
   <% else %>
-    <%= link_to t('devise.sessions.new.sign_in'),
-                new_user_session_path,
-                class: "btn btn--dark navbar__right" %>
+    <%= link_to 'Demo',
+                sign_in_demo_user_path,
+                class: "btn btn--light navbar__right" %>
   <% end %>
 </header>

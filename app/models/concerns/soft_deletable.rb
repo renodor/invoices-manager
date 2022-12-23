@@ -25,12 +25,4 @@ module SoftDeletable
     end
   end
   alias delete! destroy!
-
-  def self.destroy_all
-    p 'Not allowed'
-  end
-
-  def self.delete_all
-    p 'Not allowed'
-  end
 end

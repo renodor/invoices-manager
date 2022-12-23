@@ -19,7 +19,7 @@ class Invoice < ApplicationRecord
   after_initialize :set_date_and_number, if: :new_record?
   before_validation :set_bank, if: :new_record?
 
-  TVA = 0.2.freeze
+  TVA = 0.2
 
   def pretty_date
     date.strftime('%d/%m/%Y')
@@ -41,19 +41,16 @@ class Invoice < ApplicationRecord
     with_tva ? total_without_taxes + tva : total_without_taxes
   end
 
-  def self.next_number
-    last_number = Invoice.current_year.last&.number&.slice(4..).to_i
-    "#{Time.current.year}#{last_number + 1}"
-  end
-
   private
 
   def set_date_and_number
-    self.date = Date.current
-    self.number = Invoice.next_number
+    self.date = Date.current if date.blank?
+
+    last_number = user&.invoices&.current_year&.last&.number&.slice(4..).to_i
+    self.number = "#{Time.current.year}#{last_number + 1}"
   end
 
   def set_bank
-    self.bank = user.default_bank
+    self.bank = user&.default_bank
   end
 end

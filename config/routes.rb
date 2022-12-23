@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   root to: 'invoices#index'
 
   devise_for :users
-  resources :clients, only: %i[edit update index]
   resources :invoices do
     resources :line_items
     resources :days do
@@ -23,4 +22,6 @@ Rails.application.routes.draw do
       get :export_to_pdf
     end
   end
+
+  get '/sign_in_demo_user', to: 'pages#sign_in_demo_user'
 end

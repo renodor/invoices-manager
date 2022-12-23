@@ -18,4 +18,8 @@ class User < ApplicationRecord
   def default_bank
     banks.find_by(is_default: true)
   end
+
+  def self.demo_user
+    User.find_by(email: Rails.application.credentials.demo_user_email)
+  end
 end
