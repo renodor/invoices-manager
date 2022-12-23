@@ -10,7 +10,7 @@ class Invoice < ApplicationRecord
   has_many :days, dependent: :destroy
 
   validates :date, :number, presence: true
-  validates :number, uniqueness: true
+  validates :number, uniqueness: { scope: :user_id }
   validates :locked, inclusion: { in: [true, false] }
 
   scope :ordered, -> { order(id: :desc) }

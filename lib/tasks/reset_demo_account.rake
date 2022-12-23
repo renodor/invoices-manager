@@ -1,14 +1,15 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
 task reset_demo_account: :environment do
   demo_user = User.find_by(email: Rails.application.credentials.demo_user_email)
 
-  # puts '**WARNING** This task is not reversible and needs confirmation'
-  # puts "You are about to reset data for user with email: \"#{demo_user.email}\", type \"#{demo_user.email}\" to confirm:"
+  puts '**WARNING** This task is not reversible and needs confirmation'
+  puts "You are about to reset data for user with email: \"#{demo_user.email}\", type \"#{demo_user.email}\" to confirm:"
 
-  # input = $stdin.gets.chomp
+  input = $stdin.gets.chomp
 
-  # raise 'Task execution was aborted.' if input != demo_user.email
+  raise 'Task execution was aborted.' if input != demo_user.email
 
   if demo_user
     puts 'Destroy all demo user invoices'
@@ -138,3 +139,4 @@ task reset_demo_account: :environment do
     unit_price: 100.41
   )
 end
+# rubocop:enable Metrics/BlockLength
