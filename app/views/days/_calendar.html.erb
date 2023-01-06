@@ -21,7 +21,18 @@
         <% unless invoice.locked %>
           <div class="calendar__action">
             <%= simple_form_for '', url: generate_month_invoice_days_path(invoice), html: { class: "form  #{hide_on_pdf}" } do |f| %>
-              <%= select_month(Date.current - 1.month, {}, class: 'form__input form__input--width-auto' ) %>
+              <%=
+                select_tag(
+                  'date',
+                  options_for_select(
+                    (0..2).each_with_object({}) do |num, hash|
+                      hash[l(Date.current - num.month, format: :only_month)] = Date.current - num.month
+                    end,
+                    Date.current - 1.month
+                  ),
+                  class: 'form__input form__input--width-auto'
+                )
+              %>
               <%= f.submit t('calendar.add_calendar'), class: "btn btn--light" %>
             <% end %>
           </div>

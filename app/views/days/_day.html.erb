@@ -1,7 +1,7 @@
 <%= turbo_frame_tag day do %>
   <div class="day <%= class_names(locked: invoice.locked?, 'day--not-worked' => !day.worked?) %>">
     <span class="day__date"><%= day.pretty_date %></span>
-    <span class="day__week-day bold"><%= l(day.date, format: :only_day) %></span>
+    <span class="day__week-day bold"><%= l(day.date, format: :only_abbr_day) %></span>
     <span class="day__worked-hours"><%= day.worked ? '8' : '0' %></span>
     <span class="day__comment"><%= day.comment %></span>
     <% unless invoice.locked %>

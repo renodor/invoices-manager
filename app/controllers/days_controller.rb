@@ -22,9 +22,8 @@ class DaysController < ApplicationController
   end
 
   def generate_month
-    invoice_date = @invoice.date
-    month = params[:date][:month].to_i
-    (Date.new(invoice_date.year, month, 1)..Date.new(invoice_date.year, month, -1)).each do |day|
+    date = Date.parse(params[:date])
+    (Date.new(date.year, date.month, 1)..Date.new(date.year, date.month, -1)).each do |day|
       next if [0, 6].include?(day.wday)
 
       @invoice.days.create(date: day)

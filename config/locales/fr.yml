@@ -38,6 +38,9 @@ fr:
         strip_insignificant_zeros: false
         unit: "€"
   date:
+    formats:
+      only_abbr_day: "%^a"
+      only_month: "%B"
     abbr_day_names:
       - dim
       - lun
@@ -46,8 +49,6 @@ fr:
       - jeu
       - ven
       - sam
-    formats:
-      only_day: "%^a"
     month_names:
       -
       - Janvier
