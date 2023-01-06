@@ -18,7 +18,8 @@ class InvoicesController < ApplicationController
   end
 
   def create
-    @invoice = current_user.invoices.build(invoice_params)
+    @invoice = current_user.invoices.new
+    @invoice.attributes = invoice_params
 
     if @invoice.save
       redirect_to invoice_path(@invoice), notice: 'Invoice was successfully created.'
