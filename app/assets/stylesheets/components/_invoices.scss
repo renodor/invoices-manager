@@ -1,0 +1,11 @@
+.invoices {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--space-xxl);
+
+  .yearly-invoices {
+    h2 {
+      margin-bottom: var(--space-m);
+    }
+  }
+}

@@ -4,7 +4,7 @@ class InvoicesController < ApplicationController
   before_action :set_invoice, except: %i[index new create]
 
   def index
-    @invoices = current_user.invoices.not_deleted.ordered
+    @invoices_grouped_by_year = current_user.invoices.not_deleted.ordered.group_by { |invoice| invoice.date.year }
   end
 
   def show

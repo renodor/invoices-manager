@@ -1,13 +1,20 @@
 <main class="container">
   <div class="header">
-    <h1><%= t('invoice', count: @invoices.size) %></h1>
+    <h1><%= t('invoice', count: @invoices_grouped_by_year.values.size) %></h1>
     <%= link_to t('new_invoice'),
                 new_invoice_path,
                 class: 'btn btn--primary' %>
   </div>
 
-  <%= render partial: 'invoice_card', collection: @invoices, as: :invoice %>
-  <div class="invoices-total">
-    <%= t('total_invoiced_in_year', year: Date.current.year) %>: <b><%= number_to_currency(@invoices.map(&:total).sum) %></b>
+  <div class="invoices">
+    <% @invoices_grouped_by_year.each do |year, invoices| %>
+      <div class="yearly-invoices">
+        <h2><%= year %></h2>
+        <%= render partial: 'invoice_card', collection: invoices, as: :invoice %>
+        <div class="invoices-total">
+          <%= t('total_invoiced_in_year', year: year) %>: <b><%= number_to_currency(invoices.map(&:total).sum) %></b>
+        </div>
+      </div>
+    <% end %>
   </div>
 </main>
