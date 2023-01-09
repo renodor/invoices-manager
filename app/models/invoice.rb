@@ -34,11 +34,11 @@ class Invoice < ApplicationRecord
   end
 
   def tva
-    total_without_taxes * TVA
+    with_tva ? total_without_taxes * TVA : 0
   end
 
   def total
-    with_tva ? total_without_taxes + tva : total_without_taxes
+    total_without_taxes + tva
   end
 
   private

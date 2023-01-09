@@ -1,4 +1,20 @@
 .invoices-total {
   margin: var(--space-l) 0;
-  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  &__line {
+    display: flex;
+    justify-content: space-around;
+    padding: var(--space-xxs) var(--space-m);
+
+    span {
+      min-width: 100px;
+
+      &:last-child {
+        text-align: right;
+      }
+    }
+  }
 }

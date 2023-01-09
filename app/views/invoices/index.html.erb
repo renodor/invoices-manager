@@ -12,7 +12,10 @@
         <h2><%= year %></h2>
         <%= render partial: 'invoice_card', collection: invoices, as: :invoice %>
         <div class="invoices-total">
-          <%= t('total_invoiced_in_year', year: year) %>: <b><%= number_to_currency(invoices.map(&:total).sum) %></b>
+          <div class="invoices-total__line"><b><%= t('total_invoiced_in_year', year: year) %></b></div>
+          <div class="invoices-total__line"><span><b>HT</b></span><span><b><%= number_to_currency(invoices.map(&:total_without_taxes).sum) %></b></span></div>
+          <div class="invoices-total__line"><span>TVA</span><span><%= number_to_currency(invoices.map(&:tva).sum) %></span></div>
+          <div class="invoices-total__line"><span>TTC</span><span><%= number_to_currency(invoices.map(&:total).sum) %></span></div>
         </div>
       </div>
     <% end %>
