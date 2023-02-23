@@ -1,4 +1,10 @@
-<p class="invoice__title"><%= invoice.user.full_name %></p>
+<p class="invoice__title">
+  <!-- I learnt today that I have to add "EI" (for "Entreprise Individuel") next to my name on invoices,
+  but I don't want to old, already sent invoices to be edited.
+  Like that only new invoices will have the "EI" mention.
+  TODO: create invoices "templates, to be able to change stuffs on invoices without impacting old invoices. -->
+  <%= invoice.user.full_name(with_ei_mention: invoice.date >= Date.new(2023, 2, 23)) %>
+</p>
 <p class="invoice__upcase"><%= invoice.user.address1 %></p>
 <p class="invoice__upcase"><%= invoice.user.zipcode %> <%= invoice.user.city %></p>
 <p><%= invoice.user.country %></p>
