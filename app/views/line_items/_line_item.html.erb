@@ -3,7 +3,7 @@
     <span class="line-item__description"><%= line_item.description %></span>
     <span class="line-item__quantity"><%= line_item.quantity %></span>
     <span class="line-item__price"><%= number_to_currency(line_item.unit_price) %></span>
-    <% if invoice.with_tva? %>
+    <% if invoice.flavor == 'with_tva' %>
       <span class="line-item__tva"><%= number_to_percentage(Invoice::TVA * 100, precision: 0) %></span>
     <% end %>
     <span class="line-item__total"><%= number_to_currency(line_item.total_price) %></span>

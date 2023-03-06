@@ -3,6 +3,10 @@ fr:
   invoice:
     one: Facture
     other: Factures
+  invoice_flavors:
+    with_tva: Avec TVA
+    without_tva: Sans TVA
+    outside_eu: Hors UE
   new_invoice: Nouvelle facture
   back_to_invoices: Retour aux factures
   create_invoice_and_add_items: Créer la facture et ajouter des elements
@@ -14,7 +18,7 @@ fr:
   tva: TVA %
   ht_total: Total HT
   total: Total
-  no_tva_explaination: TVA non applicable, article 293 B du Code Général des Impôts
+  no_tva_explaination: TVA non applicable, article %{tva_cgi_article} du Code Général des Impôts
   payment_informations: Informations de paiement
   payment_label: Libellé
   payment_label_explaination: À utiliser comme libellé lors de votre virement pour identifier la transaction

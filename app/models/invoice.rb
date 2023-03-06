@@ -9,12 +9,18 @@ class Invoice < ApplicationRecord
   has_many :line_items, dependent: :destroy
   has_many :days, dependent: :destroy
 
-  validates :date, :number, presence: true
+  validates :date, :number, :flavor, presence: true
   validates :number, uniqueness: { scope: :user_id }
   validates :locked, inclusion: { in: [true, false] }
 
   scope :ordered, -> { order(id: :desc) }
   scope :current_year, -> { where('date > ?', DateTime.new(Time.current.year, 1, 1)) }
+
+  enum flavor: {
+    with_tva: 0,
+    without_tva: 1,
+    outside_eu: 2
+  }
 
   after_initialize :set_date_and_number, if: :new_record?
   before_validation :set_bank, if: :new_record?
@@ -34,11 +40,20 @@ class Invoice < ApplicationRecord
   end
 
   def tva
-    with_tva ? total_without_taxes * TVA : 0
+    flavor == 'with_tva' ? total_without_taxes * TVA : 0
   end
 
   def total
     total_without_taxes + tva
+  end
+
+  def tva_cgi_article
+    case flavor
+    when 'without_tva'
+      '293 B'
+    when 'outside_eu'
+      '259-1'
+    end
   end
 
   private

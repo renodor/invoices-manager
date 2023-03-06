@@ -6,4 +6,20 @@
   <%= render 'invoices/payment', invoice: @invoice, bank: @bank %>
 <% end %>
 
+<%= turbo_stream.replace dom_id(@invoice, :line_items_header) do %>
+  <%= render 'invoices/line_items_header', invoice: @invoice %>
+<% end %>
+
+<%= turbo_stream.update nested_dom_id(@invoice, :line_items) do %>
+  <%= render @invoice.line_items.ordered, invoice: @invoice %>
+<% end %>
+
+<%= turbo_stream.update dom_id(@invoice, :total) do %>
+  <%= render 'invoices/total', invoice: @invoice %>
+<% end %>
+
+<%= turbo_stream.replace dom_id(@invoice, :tva) do %>
+  <%= render 'invoices/tva', invoice: @invoice %>
+<% end %>
+
 <%= render_turbo_stream_flash_messages %>

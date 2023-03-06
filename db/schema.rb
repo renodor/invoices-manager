@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_03_083924) do
+ActiveRecord::Schema.define(version: 2023_03_06_115732) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2022_08_03_083924) do
     t.datetime "deleted_at", precision: 6
     t.bigint "bank_id", null: false
     t.boolean "with_tva", default: true
+    t.integer "flavor", default: 0, null: false
     t.index ["bank_id"], name: "index_invoices_on_bank_id"
     t.index ["client_id"], name: "index_invoices_on_client_id"
     t.index ["user_id"], name: "index_invoices_on_user_id"

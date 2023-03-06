@@ -9,5 +9,6 @@
     <%= f.input :number, input_html: { autofocus: true } %>
     <%= f.input :date, html5: true %>
     <%= f.input :title %>
+    <%= f.input :flavor, collection: flavors_select_hash, include_blank: false %>
   <% end %>
 <% end %>
