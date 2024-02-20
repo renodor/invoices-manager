@@ -1,6 +1,6 @@
 <%= turbo_frame_tag dom_id(invoice, :infos) do %>
   <div class="invoice-infos <%= class_names(locked: invoice.locked?) %>">
-    <!-- <p>N° de Facture : <%= invoice.number %></p> -->
+    <p>N° de Facture : <%= invoice.number %></p>
     <p>Date d'émission : <%= invoice.pretty_date %></p>
     <div class="invoice-infos__title"><%= invoice.title %></div>
     <% unless invoice.locked %>
