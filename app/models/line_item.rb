@@ -1,7 +1,8 @@
 # frozen_string_literal:true
 
 class LineItem < ApplicationRecord
-  belongs_to :invoice
+  belongs_to :invoice, optional: true
+  belongs_to :quote, optional: true
 
   validates :description, presence: true
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }

@@ -8,6 +8,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :validatable
 
   has_many :invoices, dependent: :destroy
+  has_many :quotes, dependent: :destroy
   has_many :clients, dependent: :destroy
   has_many :banks, dependent: :destroy
 

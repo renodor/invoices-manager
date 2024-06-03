@@ -23,5 +23,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :quotes, only: %i[index new show]
+
   get '/sign_in_demo_user', to: 'pages#sign_in_demo_user'
 end
