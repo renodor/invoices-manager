@@ -20,6 +20,15 @@ class InvoicesController < ApplicationController
   def create
     @invoice = current_user.invoices.new
     @invoice.attributes = invoice_params
+    @invoice.seller_name = current_user.full_name(with_ei_mention: true)
+    @invoice.seller_address1 = current_user.address1
+    @invoice.seller_zipcode = current_user.zipcode
+    @invoice.seller_city = current_user.city
+    @invoice.seller_country = current_user.country
+    @invoice.seller_email = current_user.email
+    @invoice.seller_website = current_user.website
+    @invoice.seller_siren = current_user.siren
+    assign_client_attributes_to_invoice
 
     if @invoice.save
       redirect_to invoice_path(@invoice), notice: 'Invoice was successfully created.'
@@ -45,7 +54,9 @@ class InvoicesController < ApplicationController
   end
 
   def update_client
-    if @invoice.update(invoice_params)
+    @invoice.client_id = invoice_params[:client_id]
+    assign_client_attributes_to_invoice
+    if @invoice.save
       @client = @invoice.client
       respond_to do |format|
         format.html { redirect_to invoices_path, notice: 'Invoice was successfully updated.' }
@@ -113,6 +124,14 @@ class InvoicesController < ApplicationController
 
   def invoice_params
     params.require(:invoice).permit(:date, :title, :number, :client_id, :bank_id, :locked, :flavor)
+  end
+
+  def assign_client_attributes_to_invoice
+    @invoice.client_name = @invoice.client.name
+    @invoice.client_address1 = @invoice.client.address1
+    @invoice.client_address2 = @invoice.client.address2
+    @invoice.client_zipcode = @invoice.client.zipcode
+    @invoice.client_city = @invoice.client.city
   end
 
   def render_pdf(html, filename:)

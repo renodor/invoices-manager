@@ -1,13 +1,13 @@
 <%# Step 1: empty the Turbo Frame containing the form %>
-<%= turbo_stream.update nested_dom_id(@invoice, LineItem.new), "" %>
+<%= turbo_stream.update nested_dom_id(@document, LineItem.new), "" %>
 
 <%# Step 2: append the created line item to the list %>
-<%= turbo_stream.append nested_dom_id(@invoice, 'line_items') do %>
-  <%= render @line_item, invoice: @invoice %>
+<%= turbo_stream.append nested_dom_id(@document, 'line_items') do %>
+  <%= render @line_item, document: @document %>
 <% end %>
 
 <%= render_turbo_stream_flash_messages %>
 
-<%= turbo_stream.update dom_id(@invoice, :total) do %>
-  <%= render "invoices/total", invoice: @invoice %>
+<%= turbo_stream.update dom_id(@document, :total) do %>
+  <%= render "documents/total", document: @document %>
 <% end %>

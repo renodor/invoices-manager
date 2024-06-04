@@ -1,0 +1,9 @@
+<%= turbo_frame_tag dom_id(quote, :infos) do %>
+  <div class="document-infos">
+    <p>Date d'émission : <%= quote.pretty_date %></p>
+    <div class="document-infos__title"><%= quote.title %></div>
+    <%= link_to '',
+      [:edit_infos, quote],
+      class: "full-absolute #{hide_on_pdf}" %>
+  </div>
+<% end %>

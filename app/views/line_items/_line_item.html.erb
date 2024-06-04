@@ -1,15 +1,15 @@
 <%= turbo_frame_tag line_item do %>
-  <div class="line-item <%= class_names(locked: invoice.locked?) %>">
+  <div class="line-item <%= class_names(locked: document.try(:locked?)) %>">
     <span class="line-item__description"><%= line_item.description %></span>
     <span class="line-item__quantity"><%= line_item.quantity %></span>
     <span class="line-item__price"><%= number_to_currency(line_item.unit_price) %></span>
-    <% if invoice.flavor == 'with_tva' %>
+    <% if document.flavor == 'with_tva' %>
       <span class="line-item__tva"><%= number_to_percentage(Invoice::TVA * 100, precision: 0) %></span>
     <% end %>
     <span class="line-item__total"><%= number_to_currency(line_item.total_price) %></span>
-    <% unless invoice.locked %>
+    <% unless document.try(:locked?) %>
       <%= link_to '',
-                  [:edit, invoice, line_item],
+                  [:edit, document, line_item],
                   class: "line-item__edit #{hide_on_pdf}" %>
     <% end %>
   </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_06_03_202256) do
+ActiveRecord::Schema.define(version: 2024_06_04_160459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,20 @@ ActiveRecord::Schema.define(version: 2024_06_03_202256) do
     t.datetime "deleted_at", precision: 6
     t.bigint "bank_id", null: false
     t.integer "flavor", default: 0, null: false
+    t.string "seller_name"
+    t.string "seller_address1"
+    t.string "seller_zipcode"
+    t.string "seller_city"
+    t.string "seller_country"
+    t.string "seller_email"
+    t.string "seller_website"
+    t.string "seller_siren"
+    t.string "client_name"
+    t.string "client_address1"
+    t.string "client_address2"
+    t.string "client_zipcode"
+    t.string "client_city"
+    t.string "client_country"
     t.index ["bank_id"], name: "index_invoices_on_bank_id"
     t.index ["client_id"], name: "index_invoices_on_client_id"
     t.index ["user_id"], name: "index_invoices_on_user_id"
@@ -84,6 +98,7 @@ ActiveRecord::Schema.define(version: 2024_06_03_202256) do
     t.string "client_name", null: false
     t.date "date", null: false
     t.text "description"
+    t.integer "flavor", default: 0, null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

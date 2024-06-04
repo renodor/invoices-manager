@@ -1,16 +1,22 @@
 <header class="navbar">
-  <% if user_signed_in? %>
-    <div class="navbar__name">
-       <%= "#{t('hello')} #{current_user.username}" %>
-    </div>
-    <%= button_to t('devise.sessions.already_signed_out'),
-                  destroy_user_session_path,
-                  method: :delete,
-                  data: { turbo: false },
-                  class: "btn btn--dark" %>
-  <% else %>
-    <%= link_to 'Demo',
-                sign_in_demo_user_path,
-                class: "btn btn--light navbar__right" %>
-  <% end %>
+  <div class="container navbar__content">
+    <% if user_signed_in? %>
+      <div class="navbar__links">
+        <%= link_to "Invoices", invoices_path %>
+        <%= link_to "Quotes", quotes_path %>
+      </div>
+      <div class="navbar__name">
+        <%= "#{t('hello')} #{current_user.username}" %>
+      </div>
+      <%= button_to t('devise.sessions.already_signed_out'),
+                    destroy_user_session_path,
+                    method: :delete,
+                    data: { turbo: false },
+                    class: "btn btn--dark" %>
+    <% else %>
+      <%= link_to 'Demo',
+                  sign_in_demo_user_path,
+                  class: "btn btn--light navbar__right" %>
+    <% end %>
+  </div>
 </header>

@@ -1,9 +1,0 @@
-<div class="client">
-  <p class="invoice__title"><%= @client.name %></p>
-  <p class="invoice__upcase"><%= @client.address1 %></p>
-  <% if @client.address2.present? %>
-    <p class="invoice__upcase"><%= @client.address2 %></p>
-  <% end %>
-  <p class="invoice__upcase"><%= @client.zipcode %> <%= @client.city %></p>
-  <p><%= @client.country %></p>
-</div>

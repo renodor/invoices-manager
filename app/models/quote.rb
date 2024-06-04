@@ -11,6 +11,12 @@ class Quote < ApplicationRecord
 
   after_initialize :set_date, if: :new_record?
 
+  enum flavor: {
+    with_tva: 0,
+    without_tva: 1,
+    outside_eu: 2
+  }
+
   TVA = 0.2
 
   def pretty_date
@@ -26,11 +32,20 @@ class Quote < ApplicationRecord
   end
 
   def tva
-    total_without_taxes * TVA
+    flavor == 'with_tva' ? total_without_taxes * TVA : 0
   end
 
   def total
     total_without_taxes + tva
+  end
+
+  def tva_cgi_article
+    case flavor
+    when 'without_tva'
+      '293 B'
+    when 'outside_eu'
+      '259-1'
+    end
   end
 
   private

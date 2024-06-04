@@ -1,6 +1,6 @@
 <%= turbo_stream.remove @line_item %>
 <%= render_turbo_stream_flash_messages %>
 
-<%= turbo_stream.update dom_id(@invoice, :total) do %>
-  <%= render 'invoices/total', invoice: @invoice %>
+<%= turbo_stream.update dom_id(@document, :total) do %>
+  <%= render 'documents/total', document: @document %>
 <% end %>

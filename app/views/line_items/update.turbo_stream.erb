@@ -1,9 +1,9 @@
 <%= turbo_stream.replace @line_item do %>
-  <%= render @line_item, invoice: @invoice %>
+  <%= render @line_item, document: @document %>
 <% end %>
 
 <%= render_turbo_stream_flash_messages %>
 
-<%= turbo_stream.update dom_id(@invoice, :total) do %>
-  <%= render 'invoices/total', invoice: @invoice %>
+<%= turbo_stream.update dom_id(@document, :total) do %>
+  <%= render 'documents/total', document: @document %>
 <% end %>

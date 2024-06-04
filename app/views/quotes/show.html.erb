@@ -1,0 +1,50 @@
+<main class="document-container">
+  <div class="document-nav <%= hide_on_pdf %>">
+    <%= link_to sanitize("&larr; #{t('back_to_quotes')}"), quotes_path %>
+    <div class="document-nav__right">
+      <%= button_to svg('trash'),
+                    @quote,
+                    method: :delete,
+                    form: { data: { turbo_confirm: t('are_you_sure') } },
+                    class: 'btn btn--light btn--icon' %>
+      <%= link_to 'PDF', export_to_pdf_invoice_path(@quote, format: :pdf), class: 'btn btn--primary' %>
+    </div>
+  </div>
+  <div class="document">
+    <div class="document__header">
+      <div class="document__user">
+        <%= render 'documents/user', user: @quote.user %>
+      </div>
+      <div class="document__client">
+        <%= render 'client', quote: @quote %>
+      </div>
+    </div>
+
+    <div class="document__infos">
+      <%= render 'infos', quote: @quote %>
+    </div>
+
+    <div class="document__body">
+      <div class="document__line-items">
+        <%= render 'line_items_header', document: @quote %>
+        <%= turbo_frame_tag nested_dom_id(@quote, :line_items) do %>
+          <%= render @quote.line_items.ordered, document: @quote %>
+        <% end %>
+        <%= turbo_frame_tag nested_dom_id(@quote, LineItem.new) %>
+        <%= button_to svg('plus'),
+                    [:new, @quote, :line_item],
+                    method: :get,
+                    data: { turbo_frame: nested_dom_id(@quote, LineItem.new) },
+                    class: "btn btn--light btn--icon btn--spaced #{hide_on_pdf}" %>
+        <%= turbo_frame_tag dom_id(@quote, :total) do %>
+          <%= render 'documents/total', document: @quote %>
+        <% end %>
+      </div>
+      <%= render 'tva', quote: @quote %>
+    </div>
+    <div class="quote-description">
+      <%= @quote.description.html_safe %>
+    </div>
+
+  </div>
+</main>

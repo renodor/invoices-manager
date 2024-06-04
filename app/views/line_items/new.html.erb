@@ -1,13 +1,5 @@
-<main class="container">
-  <%= link_to sanitize("&larr; Back to invoice"), invoice_path(@invoice) %>
-
-  <div class="header">
-    <h1>New item for invoice #<%= @invoice.number %></h1>
-  </div>
-
-  <%= turbo_frame_tag nested_dom_id(@invoice, LineItem.new) do %>
-    <%= render 'form',
-              invoice: @invoice,
-              line_item: @line_item %>
-  <% end %>
-</main>
+<%= turbo_frame_tag nested_dom_id(@document, LineItem.new) do %>
+  <%= render 'form',
+            document: @document,
+            line_item: @line_item %>
+<% end %>

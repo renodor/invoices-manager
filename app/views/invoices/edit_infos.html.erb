@@ -1,6 +1,6 @@
 <%= turbo_frame_tag dom_id(@invoice, :infos) do %>
-  <%= simple_form_for @invoice, url: update_infos_invoice_path(@invoice), html: { class: 'form invoice-infos--form' } do |f| %>
-    <div class="invoice-infos__actions">
+  <%= simple_form_for @invoice, url: update_infos_invoice_path(@invoice), html: { class: 'form document-infos--form' } do |f| %>
+    <div class="document-infos__actions">
       <%= link_to svg('return'), invoice_path(@invoice), class: 'btn btn--light btn--icon' %>
       <%= button_tag class: 'btn btn--primary btn--icon' do %>
         <%= svg('check') %>
