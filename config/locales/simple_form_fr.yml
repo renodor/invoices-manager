@@ -13,6 +13,9 @@ fr:
       user:
         email: Email
         password: Mot de passe
+      quote:
+        client_name: Nom du client
+        title: Titre général du devis
     labels:
       day:
         worked: Jour travaillé?

@@ -3,10 +3,6 @@ fr:
   invoice:
     one: Facture
     other: Factures
-  invoice_flavors:
-    with_tva: Avec TVA
-    without_tva: Sans TVA
-    outside_eu: Hors UE
   new_invoice: Nouvelle facture
   back_to_invoices: Retour aux factures
   create_invoice_and_add_items: Créer la facture et ajouter des elements
@@ -31,6 +27,21 @@ fr:
     working_hours: Heures travaillées
     comment: Commentaire
   are_you_sure: Atttennntion, sûr de toi?
+  quote:
+    one: Devis
+    other: Devis
+  new_quote: Nouveau devis
+  back_to_quotes: Retour aux devis
+  create_quote_and_add_items: Créer le devis et ajouter des elements
+  total_quoted_in_year: Total des devis en %{year}
+  document_flavors:
+    with_tva: Avec TVA
+    without_tva: Sans TVA
+    outside_eu: Hors UE
+  title: titre
+  text: texte
+  list: liste
+  list_placeholder: "- Premier élément\n- Deuxième élément\n- Troisième élément"
   number:
     currency:
       format:

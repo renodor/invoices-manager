@@ -28,8 +28,8 @@
       data: { turbo_frame: dom_id(quote, :new_description_block) },
       class: "btn btn--light btn--icon btn--spaced" do
     %>
-      <%= hidden_field_tag :block_type, "title" %>
-      <%= svg('plus') %> title
+      <%= hidden_field_tag :block_type, 'title' %>
+      <%= svg('plus') %> <%= t('title') %>
     <% end %>
     <%=
       button_to [:new, :description_block, quote, block_type: 'text'],
@@ -37,8 +37,8 @@
       data: { turbo_frame: dom_id(quote, :new_description_block) },
       class: "btn btn--light btn--icon btn--spaced" do
     %>
-      <%= hidden_field_tag :block_type, "text" %>
-      <%= svg('plus') %> text
+      <%= hidden_field_tag :block_type, 'text' %>
+      <%= svg('plus') %> <%= t('text') %>
     <% end %>
     <%=
       button_to [:new, :description_block, quote, block_type: 'text'],
@@ -47,7 +47,7 @@
       class: "btn btn--light btn--icon btn--spaced" do
     %>
       <%= hidden_field_tag :block_type, "list" %>
-      <%= svg('plus') %> list
+      <%= svg('plus') %> <%= t('list') %>
     <% end %>
   </div>
 </div>

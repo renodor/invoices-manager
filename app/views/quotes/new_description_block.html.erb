@@ -11,13 +11,24 @@
       <div class="description-block--form__input">
         <% case params['block_type'] %>
         <% when 'title' %>
-          <%= f.text_field :block_value, placeholder: 'Title', autofocus: true, class: 'form__input' %>
+          <%=
+            f.text_field :block_value,
+            placeholder: t('title').capitalize,
+            autofocus: true,
+            class: 'form__input'
+          %>
         <% when 'text' %>
-          <%= f.text_area :block_value, placeholder: 'Text', size: '40x3', autofocus: true, class: 'form__input' %>
+          <%=
+            f.text_area :block_value,
+            placeholder: t('text').capitalize,
+            size: '40x3',
+            autofocus: true,
+            class: 'form__input'
+          %>
         <% when 'list' %>
           <%=
             f.text_area :block_value,
-            placeholder: "- First item\n- Second item\n- Third item",
+            placeholder: t('list_placeholder'),
             autofocus: true,
             size: '40x5',
             class: 'form__input'

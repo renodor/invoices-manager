@@ -2,8 +2,8 @@
   <div class="container navbar__content">
     <% if user_signed_in? %>
       <div class="navbar__links">
-        <%= link_to "Invoices", invoices_path %>
-        <%= link_to "Quotes", quotes_path %>
+        <%= link_to t("invoice", count: 2), invoices_path %>
+        <%= link_to t("quote", count: 2), quotes_path %>
       </div>
       <div class="navbar__name">
         <%= "#{t('hello')} #{current_user.username}" %>

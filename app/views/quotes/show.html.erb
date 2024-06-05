@@ -26,7 +26,7 @@
 
     <div class="document__body">
       <div class="document__line-items">
-        <%= render 'line_items_header', document: @quote %>
+        <%= render 'line_items/header', document: @quote %>
         <%= turbo_frame_tag nested_dom_id(@quote, :line_items) do %>
           <%= render @quote.line_items.ordered, document: @quote %>
         <% end %>

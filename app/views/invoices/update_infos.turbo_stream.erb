@@ -7,7 +7,7 @@
 <% end %>
 
 <%= turbo_stream.replace dom_id(@invoice, :line_items_header) do %>
-  <%= render 'invoices/line_items_header', invoice: @invoice %>
+  <%= render 'line_items/header', document: @invoice %>
 <% end %>
 
 <%= turbo_stream.update nested_dom_id(@invoice, :line_items) do %>

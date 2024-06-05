@@ -7,7 +7,7 @@ module DocumentsHelper
 
   def flavors_select_hash
     Invoice.flavors.to_h do |flavor|
-      [t("invoice_flavors.#{flavor}"), flavor]
+      [t("document_flavors.#{flavor}"), flavor]
     end
   end
 end

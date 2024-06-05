@@ -45,7 +45,7 @@
 
     <div class="document__body">
       <div class="document__line-items">
-        <%= render 'line_items_header', invoice: @invoice %>
+        <%= render 'line_items/header', document: @invoice %>
         <%= turbo_frame_tag nested_dom_id(@invoice, :line_items) do %>
           <%= render @invoice.line_items.ordered, document: @invoice %>
         <% end %>

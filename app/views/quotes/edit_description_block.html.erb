@@ -11,14 +11,29 @@
       <div class="description-block--form__input">
         <% case @description_block['type'] %>
         <% when 'title' %>
-          <%= f.text_field :block_value, value: @description_block['value'], size: '35x1', autofocus: true, class: 'form__input' %>
+          <%=
+            f.text_field :block_value,
+            value: @description_block['value'],
+            placeholder: t('title').capitalize,
+            size: '35x1',
+            autofocus: true,
+            class: 'form__input'
+          %>
         <% when 'text' %>
-          <%= f.text_area :block_value, value: @description_block['value'], size: '40x3', autofocus: true, class: 'form__input' %>
+          <%=
+            f.text_area :block_value,
+            value: @description_block['value'],
+            placeholder: t('text').capitalize,
+            size: '40x3',
+            autofocus: true,
+            class: 'form__input'
+          %>
         <% when 'list' %>
           <%= f.hidden_field :block_type, value: 'list' %>
           <%=
             f.text_area :block_value,
             value: @description_block['value'].map { |item| item.prepend('- ') }.join("\n"),
+            placeholder: t('list_placeholder'),
             autofocus: true,
             size: '40x5',
             class: 'form__input'

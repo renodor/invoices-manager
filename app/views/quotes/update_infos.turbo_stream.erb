@@ -3,7 +3,7 @@
 <% end %>
 
 <%= turbo_stream.replace dom_id(@quote, :line_items_header) do %>
-  <%= render 'line_items_header', document: @quote %>
+  <%= render 'line_items/header', document: @quote %>
 <% end %>
 
 <%= turbo_stream.update nested_dom_id(@quote, :line_items) do %>

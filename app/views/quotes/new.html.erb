@@ -1,5 +1,7 @@
 <main class="document-container">
-  <%= link_to sanitize("&larr; #{t('back_to_quotes')}"), quotes_path %>
+  <div class="document-nav">
+    <%= link_to sanitize("&larr; #{t('back_to_quotes')}"), quotes_path %>
+  </div>
 
   <div class="document">
     <%= simple_form_for @quote, html: { class: 'form document--form' } do |f| %>
@@ -8,12 +10,12 @@
           <%= render 'documents/user', user: @quote.user %>
         </div>
         <div class="document__client">
-          <%= f.input :client_name, placeholder: "Client name", autofocus: true %>
+          <%= f.input :client_name, autofocus: true %>
         </div>
       </div>
       <div class="document__infos form document-infos--form">
         <%= f.input :date, html5: true %>
-        <%= f.input :title, placeholder: "Quote title" %>
+        <%= f.input :title %>
         <%= f.input :flavor, collection: flavors_select_hash, include_blank: false %>
       </div>
 

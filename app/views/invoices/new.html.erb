@@ -1,5 +1,7 @@
 <main class="document-container">
-  <%= link_to sanitize("&larr; #{t('back_to_invoices')}"), invoices_path %>
+  <div class="document-nav">
+    <%= link_to sanitize("&larr; #{t('back_to_invoices')}"), invoices_path %>
+  </div>
 
   <div class="document">
     <%= simple_form_for @invoice, html: { class: 'form document--form' } do |f| %>
