@@ -105,15 +105,10 @@ class InvoicesController < ApplicationController
   end
 
   def export_to_pdf
-    html = render_to_string(action: :show, layout: 'pdf', formats: [:html], locals: { :@invoice => @invoice, :@client => @invoice.client, :@bank => @invoice.bank })
-    pdf = Grover::HTMLPreprocessor.process(html, Rails.application.config.asset_host, 'http')
-
-    respond_to do |format|
-      format.html { render html: html }
-      format.pdf do
-        render_pdf(pdf, filename: @invoice.pdf_file_name)
-      end
-    end
+    render_pdf(
+      locals: { :@invoice => @invoice, :@client => @invoice.client, :@bank => @invoice.bank },
+      file_name: @invoice.pdf_file_name
+    )
   end
 
   private
@@ -132,10 +127,5 @@ class InvoicesController < ApplicationController
     @invoice.client_address2 = @invoice.client.address2
     @invoice.client_zipcode = @invoice.client.zipcode
     @invoice.client_city = @invoice.client.city
-  end
-
-  def render_pdf(html, filename:)
-    pdf = Grover.new(html, format: 'A4').to_pdf
-    send_data pdf, filename: filename, type: 'application/pdf'
   end
 end

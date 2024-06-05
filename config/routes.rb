@@ -23,13 +23,19 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :quotes, only: %i[index new create show] do
+  resources :quotes, only: %i[index new create show destroy] do
     resources :line_items
     member do
       get :edit_client
       patch :update_client
       get :edit_infos
       patch :update_infos
+      get :export_to_pdf
+      get :new_description_block
+      patch :create_description_block
+      get :edit_description_block
+      patch :update_description_block
+      delete :destroy_description_block
     end
   end
 

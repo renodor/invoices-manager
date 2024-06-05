@@ -7,7 +7,7 @@
                     method: :delete,
                     form: { data: { turbo_confirm: t('are_you_sure') } },
                     class: 'btn btn--light btn--icon' %>
-      <%= link_to 'PDF', export_to_pdf_invoice_path(@quote, format: :pdf), class: 'btn btn--primary' %>
+      <%= link_to 'PDF', export_to_pdf_quote_path(@quote, format: :pdf), class: 'btn btn--primary' %>
     </div>
   </div>
   <div class="document">
@@ -40,11 +40,10 @@
           <%= render 'documents/total', document: @quote %>
         <% end %>
       </div>
-      <%= render 'tva', quote: @quote %>
+      <%= render 'documents/tva', document: @quote %>
     </div>
-    <div class="quote-description">
-      <%= @quote.description.html_safe %>
-    </div>
-
+    <%= turbo_frame_tag :description_blocks do %>
+      <%= render "description_blocks", quote: @quote %>
+    <% end %>
   </div>
 </main>

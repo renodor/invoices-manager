@@ -2,6 +2,7 @@
 
 class Invoice < ApplicationRecord
   include SoftDeletable
+  include FinancialMethods
 
   belongs_to :user
   belongs_to :client
@@ -25,26 +26,12 @@ class Invoice < ApplicationRecord
   after_initialize :set_date_and_number, if: :new_record?
   before_validation :set_bank, if: :new_record?
 
-  TVA = 0.2
-
   def pretty_date
     date.strftime('%d/%m/%Y')
   end
 
   def pdf_file_name
-    "#{number}-#{client.name.downcase.gsub(' ', '_')}-#{title.downcase.gsub(' ', '_')}-#{date}.pdf"
-  end
-
-  def total_without_taxes
-    line_items.sum(&:total_price)
-  end
-
-  def tva
-    flavor == 'with_tva' ? total_without_taxes * TVA : 0
-  end
-
-  def total
-    total_without_taxes + tva
+    "#{number}-#{client.name.downcase.gsub(' ', '-')}-#{title.downcase.delete('-').delete(',').gsub(' ', '-').gsub('--', '-')}.pdf"
   end
 
   def tva_cgi_article

@@ -1,6 +1,6 @@
 # frozen_string_literal:true
 
-module InvoicesHelper
+module DocumentsHelper
   def hide_on_pdf
     'display-none' if params[:action] == 'export_to_pdf'
   end

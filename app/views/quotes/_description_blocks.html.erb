@@ -1,0 +1,53 @@
+<div>
+  <% quote.description_blocks.each do |description_block| %>
+    <%= turbo_frame_tag nested_dom_id(@quote, :description_block, description_block['position']) do %>
+      <div class="description-block">
+        <% case description_block['type'] %>
+        <% when 'title' %>
+          <p class="description-block__title"><%= description_block['value'] %></p>
+        <% when 'text' %>
+          <p class="description-block__text"><%= description_block['value'] %></p>
+        <% when 'list' %>
+          <ul class="description-block__list">
+            <% description_block['value'].each do |item| %>
+              <li><%= item %></li>
+            <% end %>
+          </ul>
+        <% end %>
+        <%= link_to '',
+            [:edit, :description_block, quote, block_position: description_block['position']],
+            class: "full-absolute #{hide_on_pdf}" %>
+      </div>
+    <% end %>
+  <% end %>
+  <%= turbo_frame_tag dom_id(quote, :new_description_block) %>
+  <div class="description-block--buttons <%= hide_on_pdf %>">
+    <%=
+      button_to [:new, :description_block, quote],
+      method: :get,
+      data: { turbo_frame: dom_id(quote, :new_description_block) },
+      class: "btn btn--light btn--icon btn--spaced" do
+    %>
+      <%= hidden_field_tag :block_type, "title" %>
+      <%= svg('plus') %> title
+    <% end %>
+    <%=
+      button_to [:new, :description_block, quote, block_type: 'text'],
+      method: :get,
+      data: { turbo_frame: dom_id(quote, :new_description_block) },
+      class: "btn btn--light btn--icon btn--spaced" do
+    %>
+      <%= hidden_field_tag :block_type, "text" %>
+      <%= svg('plus') %> text
+    <% end %>
+    <%=
+      button_to [:new, :description_block, quote, block_type: 'text'],
+      method: :get,
+      data: { turbo_frame: dom_id(quote, :new_description_block) },
+      class: "btn btn--light btn--icon btn--spaced" do
+    %>
+      <%= hidden_field_tag :block_type, "list" %>
+      <%= svg('plus') %> list
+    <% end %>
+  </div>
+</div>

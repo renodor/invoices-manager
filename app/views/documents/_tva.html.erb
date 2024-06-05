@@ -1,0 +1,5 @@
+<%= turbo_frame_tag dom_id(document, :tva) do %>
+  <% unless document.flavor == 'with_tva' %>
+    <p class="document__no-tva"><%= t('no_tva_explaination', tva_cgi_article: document.tva_cgi_article) %></p>
+  <% end %>
+<% end %>

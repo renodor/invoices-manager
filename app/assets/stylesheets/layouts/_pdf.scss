@@ -1,11 +1,11 @@
 .pdf-layout {
   background-color: var(--color-white);
-  .invoice, .calendar__body {
+  .document, .calendar__body {
     box-shadow: none;
   }
 
   @media print {
-    .invoice, .calendar, .invoice__payment {
+    .document, .calendar {
       break-inside: avoid-page;
     }
   }

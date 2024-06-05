@@ -61,7 +61,7 @@
           <%= render 'documents/total', document: @invoice %>
         <% end %>
       </div>
-      <%= render 'tva', invoice: @invoice %>
+      <%= render 'documents/tva', document: @invoice %>
     </div>
 
     <%= render 'payment', invoice: @invoice, bank: @bank %>

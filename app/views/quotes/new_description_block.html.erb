@@ -1,0 +1,37 @@
+<%= turbo_frame_tag dom_id(@quote, :new_description_block) do %>
+  <div class="description-block description-block--form">
+    <%=
+      form_with url: [:create, :description_block, @quote],
+      method: :patch,
+      class: 'form',
+      data: { turbo_frame: :description_blocks } do |f|
+    %>
+      <%= f.hidden_field :block_type, value: params['block_type'] %>
+
+      <div class="description-block--form__input">
+        <% case params['block_type'] %>
+        <% when 'title' %>
+          <%= f.text_field :block_value, placeholder: 'Title', autofocus: true, class: 'form__input' %>
+        <% when 'text' %>
+          <%= f.text_area :block_value, placeholder: 'Text', size: '40x3', autofocus: true, class: 'form__input' %>
+        <% when 'list' %>
+          <%=
+            f.text_area :block_value,
+            placeholder: "- First item\n- Second item\n- Third item",
+            autofocus: true,
+            size: '40x5',
+            class: 'form__input'
+          %>
+        <% end %>
+      </div>
+      <%=
+        link_to svg('return'),
+        quote_path(@quote),
+        class: 'btn btn--light btn--icon'
+      %>
+      <%= button_tag class: 'btn btn--primary btn--icon' do %>
+        <%= svg('check') %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

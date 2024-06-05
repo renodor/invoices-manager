@@ -15,7 +15,7 @@ class QuotesController < ApplicationController
     @quote = current_user.quotes.new(quote_params)
 
     if @quote.save
-      redirect_to quote_path(@quote), notice: 'Invoice was successfully created.'
+      redirect_to quote_path(@quote), notice: 'Quote was successfully created.'
     else
       @clients = current_user.clients.not_deleted
       render :new, status: :unprocessable_entity
@@ -23,6 +23,12 @@ class QuotesController < ApplicationController
   end
 
   def show; end
+
+  def destroy
+    @quote.destroy
+
+    redirect_to quotes_path, notice: 'Quote was successfully destroyed.'
+  end
 
   def edit_client; end
 
@@ -48,6 +54,48 @@ class QuotesController < ApplicationController
     else
       render :edit_infos, status: :unprocessable_entity
     end
+  end
+
+  def new_description_block; end
+
+  def create_description_block
+    @quote.description_blocks << {
+      type: params[:block_type],
+      value: params[:block_type] == 'list' ? params[:block_value].gsub('- ', '').split("\n") : params[:block_value],
+      position: @quote.description_blocks&.last&.dig('position').to_i + 1
+    }
+
+    @quote.save!
+  end
+
+  def edit_description_block
+    @description_block = @quote.description_blocks.detect do |description_block|
+      description_block['position'] == params[:block_position].to_i
+    end
+  end
+
+  def update_description_block
+    description_block = @quote.description_blocks.detect do |block|
+      block['position'] == params[:block_position].to_i
+    end
+    description_block['value'] = params[:block_type] == 'list' ? params[:block_value].gsub('- ', '').split("\n") : params[:block_value]
+    @quote.save!
+  end
+
+  def destroy_description_block
+    description_block = @quote.description_blocks.detect do |block|
+      block['position'] == params[:block_position].to_i
+    end
+
+    @quote.description_blocks.delete(description_block)
+    @quote.save!
+  end
+
+  def export_to_pdf
+    render_pdf(
+      locals: { :@quote => @quote },
+      file_name: @quote.pdf_file_name
+    )
   end
 
   private

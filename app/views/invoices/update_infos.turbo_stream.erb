@@ -19,7 +19,7 @@
 <% end %>
 
 <%= turbo_stream.replace dom_id(@invoice, :tva) do %>
-  <%= render 'invoices/tva', invoice: @invoice %>
+  <%= render 'documents/tva', document: @invoice %>
 <% end %>
 
 <%= render_turbo_stream_flash_messages %>

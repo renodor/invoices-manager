@@ -15,7 +15,7 @@
 <% end %>
 
 <%= turbo_stream.replace dom_id(@quote, :tva) do %>
-  <%= render 'quotes/tva', quote: @quote %>
+  <%= render 'documents/tva', document: @quote %>
 <% end %>
 
 <%= render_turbo_stream_flash_messages %>

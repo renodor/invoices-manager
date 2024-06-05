@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :banks, dependent: :destroy
 
   def full_name(with_ei_mention: true)
-    "#{with_ei_mention ? 'EI' : ''} #{first_name} #{last_name}"
+    "#{with_ei_mention ? 'EI ' : ''}#{first_name} #{last_name}"
   end
 
   def default_bank

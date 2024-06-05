@@ -1,6 +1,8 @@
 # frozen_string_literal:true
 
 class Quote < ApplicationRecord
+  include FinancialMethods
+
   belongs_to :user
   has_many :line_items, dependent: :destroy
 
@@ -9,34 +11,20 @@ class Quote < ApplicationRecord
   scope :ordered, -> { order(id: :desc) }
   scope :current_year, -> { where('date > ?', DateTime.new(Time.current.year, 1, 1)) }
 
-  after_initialize :set_date, if: :new_record?
-
   enum flavor: {
     with_tva: 0,
     without_tva: 1,
     outside_eu: 2
   }
 
-  TVA = 0.2
+  after_initialize :set_date, if: :new_record?
 
   def pretty_date
     date.strftime('%d/%m/%Y')
   end
 
   def pdf_file_name
-    "#{client_name.downcase.gsub(' ', '_')}-#{title.downcase.gsub(' ', '_')}-#{date}.pdf"
-  end
-
-  def total_without_taxes
-    line_items.sum(&:total_price)
-  end
-
-  def tva
-    flavor == 'with_tva' ? total_without_taxes * TVA : 0
-  end
-
-  def total
-    total_without_taxes + tva
+    "#{title.downcase.delete('-').delete(',').gsub(' ', '-').gsub('--', '-')}-#{user.first_name.downcase}-#{user.last_name.downcase}.pdf"
   end
 
   def tva_cgi_article

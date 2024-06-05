@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 2024_06_04_160459) do
     t.string "title"
     t.string "client_name", null: false
     t.date "date", null: false
-    t.text "description"
+    t.jsonb "description_blocks", default: [], array: true
     t.integer "flavor", default: 0, null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
