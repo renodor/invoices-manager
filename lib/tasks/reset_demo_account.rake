@@ -151,6 +151,8 @@ task reset_demo_account: :environment do
     unit_price: 100.41
   )
 
+  puts 'Create demo user quotes'
+
   quote = demo_user.quotes.create!(
     title: 'Titre général du devis',
     client_name: 'Cool prospect',
