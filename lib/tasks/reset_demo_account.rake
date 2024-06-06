@@ -101,6 +101,7 @@ task reset_demo_account: :environment do
   invoice2 = demo_user.invoices.build(
     title: 'Titre général de la facture 2',
     date: Date.current - 11.days,
+    flavor: :without_tva,
     client: client1
   )
   populate_invoice_seller_and_client_infos(invoice2)
@@ -148,6 +149,35 @@ task reset_demo_account: :environment do
     description: 'Item 4',
     quantity: '3',
     unit_price: 100.41
+  )
+
+  quote = demo_user.quotes.create!(
+    title: 'Titre général du devis',
+    client_name: 'Cool prospect',
+    date: Date.current - 2.days,
+    description_blocks: [
+      {
+        type: 'title',
+        value: 'Description du projet',
+        position: 1
+      },
+      {
+        type: 'text',
+        value: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempus in orci eu luctus. Nulla facilisi. Phasellus et tortor ac velit tincidunt gravida. Vestibulum sagittis ullamcorper diam eget mattis.',
+        position: 2
+      },
+      {
+        type: 'list',
+        value: ['Premier élément', 'Deuxième élément', 'Troisième élément'],
+        position: 3
+      }
+    ]
+  )
+
+  quote.line_items.create!(
+    description: 'Jours travaillés',
+    quantity: '10',
+    unit_price: 500
   )
 end
 # rubocop:enable Metrics/BlockLength
