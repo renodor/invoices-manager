@@ -69,23 +69,17 @@ class QuotesController < ApplicationController
   end
 
   def edit_description_block
-    @description_block = @quote.description_blocks.detect do |description_block|
-      description_block['position'] == params[:block_position].to_i
-    end
+    @description_block = find_description_block_by_position
   end
 
   def update_description_block
-    description_block = @quote.description_blocks.detect do |block|
-      block['position'] == params[:block_position].to_i
-    end
+    description_block = find_description_block_by_position
     description_block['value'] = params[:block_type] == 'list' ? params[:block_value].gsub('- ', '').split("\n") : params[:block_value]
     @quote.save!
   end
 
   def destroy_description_block
-    description_block = @quote.description_blocks.detect do |block|
-      block['position'] == params[:block_position].to_i
-    end
+    description_block = find_description_block_by_position
 
     @quote.description_blocks.delete(description_block)
     @quote.save!
@@ -106,5 +100,9 @@ class QuotesController < ApplicationController
 
   def quote_params
     params.require(:quote).permit(:date, :title, :client_name, :flavor)
+  end
+
+  def find_description_block_by_position
+    @quote.description_blocks.detect { |block| block['position'] == params[:block_position].to_i }
   end
 end
