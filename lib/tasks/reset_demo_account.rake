@@ -4,6 +4,11 @@
 task reset_demo_account: :environment do
   demo_user = User.find_by(email: Rails.application.credentials.demo_user_email)
 
+  if demo_user.blank?
+    puts 'No demo user found'
+    next
+  end
+
   puts '**WARNING** This task is not reversible and needs confirmation'
   puts "You are about to reset data for user with email: \"#{demo_user.email}\", type \"#{demo_user.email}\" to confirm:"
 
@@ -72,12 +77,14 @@ task reset_demo_account: :environment do
 
   puts 'Create demo user invoices'
 
-  invoice1 = demo_user.invoices.create!(
+  invoice1 = demo_user.invoices.builld(
     title: 'Titre général de la facture 1',
     client: client1,
     date: Date.current - 32.days,
     locked: true
   )
+  populate_invoice_seller_and_client_infos(invoice1)
+  invoice1.save!
 
   invoice1.line_items.create!(
     description: 'Item 1',
@@ -91,11 +98,13 @@ task reset_demo_account: :environment do
     unit_price: 175.26
   )
 
-  invoice2 = demo_user.invoices.create!(
+  invoice2 = demo_user.invoices.build(
     title: 'Titre général de la facture 2',
     date: Date.current - 11.days,
     client: client1
   )
+  populate_invoice_seller_and_client_infos(invoice2)
+  invoice2.save!
 
   invoice2.line_items.create!(
     description: 'Item 1',
@@ -109,11 +118,13 @@ task reset_demo_account: :environment do
     unit_price: 100.33
   )
 
-  invoice3 = demo_user.invoices.create!(
+  invoice3 = demo_user.invoices.build(
     title: 'Titre général de la facture 3',
     date: Date.current,
     client: client2
   )
+  populate_invoice_seller_and_client_infos(invoice3)
+  invoice3.save!
 
   invoice3.line_items.create!(
     description: 'Item 1',
@@ -140,3 +151,20 @@ task reset_demo_account: :environment do
   )
 end
 # rubocop:enable Metrics/BlockLength
+
+def populate_invoice_seller_and_client_infos(invoice)
+  invoice.seller_name = invoice.user.full_name
+  invoice.seller_address1 = invoice.user.address1
+  invoice.seller_zipcode = invoice.user.zipcode
+  invoice.seller_city = invoice.user.city
+  invoice.seller_country = invoice.user.country
+  invoice.seller_email = invoice.user.email
+  invoice.seller_website = invoice.user.website
+  invoice.seller_siren = invoice.user.siren
+
+  invoice.client_name = invoice.client.name
+  invoice.client_address1 = invoice.client.address1
+  invoice.client_address2 = invoice.client.address2
+  invoice.client_zipcode = invoice.client.zipcode
+  invoice.client_city = invoice.client.city
+end

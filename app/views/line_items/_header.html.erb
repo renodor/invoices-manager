@@ -1,11 +1,11 @@
-<%= turbo_frame_tag dom_id(invoice, :line_items_header) do %>
+<%= turbo_frame_tag dom_id(document, :line_items_header) do %>
   <div class="line-item line-item--header locked">
     <span class="line-item__description"><%= t('description') %></span>
     <span class="line-item__quantity"><%= t('qty') %></span>
     <span class="line-item__price"><%= t('unit_price') %></span>
-    <% if invoice.flavor == 'with_tva' %>
-      <span class="line-item__tva"><%= t('tva') %></span>
+    <% if document.flavor == 'with_tva' %>
+      <span class="line-item__tva"><%= t('vat') %> %</span>
     <% end %>
-    <span class="line-item__total"><%= t('ht_total') %></span>
+    <span class="line-item__total"><%= t('total_without_tax') %></span>
   </div>
 <% end %>

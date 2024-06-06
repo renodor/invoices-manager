@@ -1,15 +1,15 @@
 # frozen_string_literal:true
 
 class LineItemsController < ApplicationController
-  before_action :set_invoice
+  before_action :set_document
   before_action :set_line_item, only: %i[edit update destroy]
 
   def new
-    @line_item = @invoice.line_items.new
+    @line_item = @document.line_items.new
   end
 
   def create
-    @line_item = @invoice.line_items.build(line_item_params)
+    @line_item = @document.line_items.build(line_item_params)
 
     if @line_item.save
       respond_to do |format|
@@ -38,7 +38,7 @@ class LineItemsController < ApplicationController
     @line_item.destroy
 
     respond_to do |format|
-      format.html { redirect_to invoice_path(@invoice), notice: 'Item was successfully destroyed.' }
+      format.html { redirect_to invoice_path(@document), notice: 'Item was successfully destroyed.' }
       format.turbo_stream { flash.now[:notice] = 'Item was successfully destroyed.' }
     end
   end
@@ -49,11 +49,11 @@ class LineItemsController < ApplicationController
     params.require(:line_item).permit(:description, :quantity, :unit_price)
   end
 
-  def set_invoice
-    @invoice = current_user.invoices.find(params[:invoice_id])
+  def set_document
+    @document = params[:invoice_id].present? ? current_user.invoices.find(params[:invoice_id]) : current_user.quotes.find(params[:quote_id])
   end
 
   def set_line_item
-    @line_item = @invoice.line_items.find(params[:id])
+    @line_item = @document.line_items.find(params[:id])
   end
 end

@@ -1,0 +1,13 @@
+<%= turbo_frame_tag dom_id(@quote, :infos) do %>
+  <%= simple_form_for @quote, url: update_infos_quote_path(@quote), html: { class: 'form document-infos--form' } do |f| %>
+    <div class="document-infos__actions">
+      <%= link_to svg('return'), quote_path(@quote), class: 'btn btn--light btn--icon' %>
+      <%= button_tag class: 'btn btn--primary btn--icon' do %>
+        <%= svg('check') %>
+      <% end %>
+    </div>
+    <%= f.input :date, html5: true %>
+    <%= f.input :title, input_html: { autofocus: true } %>
+    <%= f.input :flavor, collection: flavors_select_hash, include_blank: false %>
+  <% end %>
+<% end %>

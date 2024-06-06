@@ -1,0 +1,57 @@
+.description-block {
+  padding: var(--space-xxxs) var(--space-m);
+  position: relative;
+
+  &:hover {
+    box-shadow: var(--shadow-small);
+  }
+
+  &__title {
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-top: var(--space-m);
+  }
+
+  &__list {
+    margin-left: var(--space-m);
+  }
+
+  &--buttons {
+    display: flex;
+    margin-top: var(--space-m);
+
+    button {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xxs);
+      padding-right: var(--space-s);
+    }
+  }
+
+  &--form {
+    display: flex;
+    gap: var(--space-xs);
+    box-shadow: var(--shadow-small);
+    margin: var(--space-m) 0;
+
+    form {
+      display: flex;
+      flex-shrink: 0;
+      flex-wrap: nowrap;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    &__input {
+      padding-top: var(--space-m);
+      padding-bottom: var(--space-m);
+      padding-right: var(--space-m);
+    }
+
+    &_input {
+      padding-top: var(--space-m);
+      padding-bottom: var(--space-m);
+      padding-right: var(--space-m);
+    }
+  }
+}

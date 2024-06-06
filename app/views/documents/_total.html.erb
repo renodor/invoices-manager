@@ -1,0 +1,13 @@
+<div class="document__total">
+  <% if document.flavor == 'with_tva' %>
+    <div class="document__total__line">
+      <span><%= t('total_without_tax') %></span> <span><%= number_to_currency(document.total_without_taxes) %></span>
+    </div>
+    <div class="document__total__line">
+      <span><%= t('vat') %></span> <span><%= number_to_currency(document.tva) %></span>
+    </div>
+  <% end %>
+  <div class="document__total__line highlighted">
+    <span><%= t('total') %></span> <span><%= number_to_currency(document.total) %></span>
+  </div>
+</div>

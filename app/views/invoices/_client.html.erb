@@ -1,6 +1,12 @@
 <%= turbo_frame_tag dom_id(invoice, :client) do %>
-  <div class="invoice-client <%= class_names(locked: invoice.locked?) %>">
-    <%= render client %>
+  <div class="document-client <%= class_names(locked: invoice.locked?) %>">
+    <p class="document__title"><%= invoice.client_name %></p>
+    <p class="document__upcase"><%= invoice.client_address1 %></p>
+    <% if invoice.client_address2.present? %>
+      <p class="document__upcase"><%= invoice.client_address2 %></p>
+    <% end %>
+    <p class="document__upcase"><%= invoice.client_zipcode %> <%= invoice.client_city %></p>
+    <p><%= invoice.client_country %></p>
     <% unless invoice.locked %>
       <%= link_to '',
           [:edit_client, invoice],

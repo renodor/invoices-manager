@@ -1,0 +1,21 @@
+<%= turbo_stream.replace dom_id(@quote, :infos) do %>
+  <%= render 'infos', quote: @quote %>
+<% end %>
+
+<%= turbo_stream.replace dom_id(@quote, :line_items_header) do %>
+  <%= render 'line_items/header', document: @quote %>
+<% end %>
+
+<%= turbo_stream.update nested_dom_id(@quote, :line_items) do %>
+  <%= render @quote.line_items.ordered, document: @quote %>
+<% end %>
+
+<%= turbo_stream.update dom_id(@quote, :total) do %>
+  <%= render 'documents/total', document: @quote %>
+<% end %>
+
+<%= turbo_stream.replace dom_id(@quote, :tva) do %>
+  <%= render 'documents/tva', document: @quote %>
+<% end %>
+
+<%= render_turbo_stream_flash_messages %>

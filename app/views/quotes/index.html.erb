@@ -1,0 +1,23 @@
+<main class="container">
+  <div class="header">
+    <h1><%= t('quote', count: @quotes_grouped_by_year.values.size) %></h1>
+    <%= link_to t('new_quote'),
+                new_quote_path,
+                class: 'btn btn--primary' %>
+  </div>
+
+  <div class="documents">
+    <% @quotes_grouped_by_year.each do |year, quotes| %>
+      <div class="yearly-documents">
+        <h2><%= year %></h2>
+        <%= render partial: 'quote_card', collection: quotes, as: :quote %>
+        <div class="documents-total">
+          <div class="documents-total__line"><b><%= t('total_quoted_in_year', year: year) %></b></div>
+          <div class="documents-total__line"><span><b><%= t('total_without_tax') %></b></span><span><b><%= number_to_currency(quotes.map(&:total_without_taxes).sum) %></b></span></div>
+          <div class="documents-total__line"><span><%= t('vat') %></span><span><%= number_to_currency(quotes.map(&:tva).sum) %></span></div>
+          <div class="documents-total__line"><span><%= t('total_tax_included') %></span><span><%= number_to_currency(quotes.map(&:total).sum) %></span></div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</main>

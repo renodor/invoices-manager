@@ -1,9 +1,9 @@
-.invoices {
+.documents {
   display: flex;
   flex-direction: column;
   row-gap: var(--space-xxl);
 
-  .yearly-invoices {
+  .yearly-documents {
     h2 {
       margin-bottom: var(--space-m);
     }

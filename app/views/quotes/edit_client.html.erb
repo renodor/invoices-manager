@@ -1,0 +1,11 @@
+<%= turbo_frame_tag dom_id(@quote, :client) do %>
+  <div>
+    <%= simple_form_for @quote, url: update_client_quote_path(@quote), html: { class: 'form' } do |f| %>
+      <%= f.input :client_name, input_html: { autofocus: true } %>
+      <%= link_to svg('return'), quote_path(@quote), class: 'btn btn--light btn--icon' %>
+      <%= button_tag class: 'btn btn--primary btn--icon' do %>
+        <%= svg('check') %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

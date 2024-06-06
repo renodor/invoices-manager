@@ -1,9 +1,9 @@
-<div class="invoice-card">
-  <div class="invoice-card__left">
+<div class="document-card">
+  <div class="document-card__left">
     <span class="bold"># <%= invoice.number %></span>
     <span><%= invoice.client.name %></span>
   </div>
-  <span class="invoice-card__title"><%= invoice.title %></span>
+  <span class="document-card__title"><%= invoice.title %></span>
   <span><%= invoice.pretty_date %></span>
   <% if invoice.locked %>
     <span><%= svg('lock') %></span>
