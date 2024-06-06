@@ -20,7 +20,7 @@ class InvoicesController < ApplicationController
   def create
     @invoice = current_user.invoices.new
     @invoice.attributes = invoice_params
-    @invoice.seller_name = current_user.full_name(with_ei_mention: true)
+    @invoice.seller_name = current_user.full_name
     @invoice.seller_address1 = current_user.address1
     @invoice.seller_zipcode = current_user.zipcode
     @invoice.seller_city = current_user.city
