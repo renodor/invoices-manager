@@ -77,7 +77,7 @@ task reset_demo_account: :environment do
 
   puts 'Create demo user invoices'
 
-  invoice1 = demo_user.invoices.builld(
+  invoice1 = demo_user.invoices.build(
     title: 'Titre général de la facture 1',
     client: client1,
     date: Date.current - 32.days,
