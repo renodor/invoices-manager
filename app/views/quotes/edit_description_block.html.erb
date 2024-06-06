@@ -23,7 +23,7 @@
           <%=
             f.text_area :block_value,
             value: @description_block['value'],
-            placeholder: t('text'),
+            placeholder: t('text').capitalize,
             size: '40x3',
             autofocus: true,
             class: 'form__input'
