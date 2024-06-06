@@ -22,32 +22,16 @@
   <% end %>
   <%= turbo_frame_tag dom_id(quote, :new_description_block) %>
   <div class="description-block--buttons <%= hide_on_pdf %>">
-    <%=
-      button_to [:new, :description_block, quote],
-      method: :get,
-      data: { turbo_frame: dom_id(quote, :new_description_block) },
-      class: "btn btn--light btn--icon btn--spaced" do
-    %>
-      <%= hidden_field_tag :block_type, 'title' %>
-      <%= svg('plus') %> <%= t('title') %>
-    <% end %>
-    <%=
-      button_to [:new, :description_block, quote, block_type: 'text'],
-      method: :get,
-      data: { turbo_frame: dom_id(quote, :new_description_block) },
-      class: "btn btn--light btn--icon btn--spaced" do
-    %>
-      <%= hidden_field_tag :block_type, 'text' %>
-      <%= svg('plus') %> <%= t('text') %>
-    <% end %>
-    <%=
-      button_to [:new, :description_block, quote, block_type: 'text'],
-      method: :get,
-      data: { turbo_frame: dom_id(quote, :new_description_block) },
-      class: "btn btn--light btn--icon btn--spaced" do
-    %>
-      <%= hidden_field_tag :block_type, "list" %>
-      <%= svg('plus') %> <%= t('list') %>
+    <% ['title', 'text', 'list'].each do |block_type| %>
+      <%=
+        button_to [:new, :description_block, quote],
+        method: :get,
+        data: { turbo_frame: dom_id(quote, :new_description_block) },
+        class: "btn btn--light btn--icon btn--spaced" do
+      %>
+        <%= hidden_field_tag :block_type, block_type %>
+        <%= svg('plus') %> <%= t(block_type) %>
+      <% end %>
     <% end %>
   </div>
 </div>

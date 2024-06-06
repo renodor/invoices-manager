@@ -53,8 +53,8 @@
     left: 0;
   }
 
-  &__actions {
-    flex: 0 0 125px;
+  &__destroy_button {
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -71,6 +71,9 @@
 
   &--form {
     box-shadow: var(--shadow-small);
+    form {
+      gap: var(--space-xs);
+    }
     input, textarea {
       height: 36px;
     }

@@ -23,7 +23,7 @@
           <%=
             f.text_area :block_value,
             value: @description_block['value'],
-            placeholder: t('text').capitalize,
+            placeholder: t('text'),
             size: '40x3',
             autofocus: true,
             class: 'form__input'
@@ -40,11 +40,7 @@
           %>
         <% end %>
       </div>
-      <%=
-        link_to svg('return'),
-        quote_path(@quote),
-        class: 'btn btn--light btn--icon'
-      %>
+      <%= link_to svg('return'), quote_path(@quote), class: 'btn btn--light btn--icon' %>
       <%= button_tag class: 'btn btn--primary btn--icon' do %>
         <%= svg('check') %>
       <% end %>
