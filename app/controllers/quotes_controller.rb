@@ -99,7 +99,7 @@ class QuotesController < ApplicationController
   end
 
   def quote_params
-    params.require(:quote).permit(:date, :title, :client_name, :flavor)
+    params.require(:quote).permit(:date, :title, :client_name, :client_address1, :client_address2, :client_zipcode, :client_city, :client_country, :flavor)
   end
 
   def find_description_block_by_position

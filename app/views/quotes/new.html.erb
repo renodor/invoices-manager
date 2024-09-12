@@ -9,8 +9,13 @@
         <div class="document__user">
           <%= render 'documents/user', user: @quote.user %>
         </div>
-        <div class="document__client">
+        <div class="document__client form document-client--form">
           <%= f.input :client_name, autofocus: true %>
+          <%= f.input :client_address1 %>
+          <%= f.input :client_address2 %>
+          <%= f.input :client_zipcode %>
+          <%= f.input :client_city %>
+          <%= f.input :client_country, as: :string %>
         </div>
       </div>
       <div class="document__infos form document-infos--form">

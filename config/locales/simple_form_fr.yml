@@ -15,6 +15,11 @@ fr:
         password: Mot de passe
       quote:
         client_name: Nom du client
+        client_address1: Adresse du client (optionel)
+        client_address2: Adresse complémentaire du client (optionel)
+        client_zipcode: Code postal du client (optionel)
+        client_country: Pays du client (optionel)
+        client_city: Ville du client (optionel)
         title: Titre général du devis
     labels:
       day:

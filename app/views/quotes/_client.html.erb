@@ -1,6 +1,22 @@
 <%= turbo_frame_tag dom_id(quote, :client) do %>
   <div class="document-client">
     <p class="document__title"><%= quote.client_name %></p>
+    <% if quote.client_address1.present? %>
+      <p class="document__upcase"><%= quote.client_address1 %></p>
+    <% end %>
+    <% if quote.client_address2.present? %>
+      <p class="document__upcase"><%= quote.client_address2 %></p>
+    <% end %>
+    <% if quote.client_zipcode.present? %>
+      <p class="document__upcase"><%= quote.client_zipcode %></p>
+    <% end %>
+    <% if quote.client_city.present? %>
+      <p class="document__upcase"><%= quote.client_city %></p>
+    <% end %>
+    <% if quote.client_country.present? %>
+      <p class="document__upcase"><%= quote.client_country %></p>
+    <% end %>
+
     <%= link_to '',
         [:edit_client, quote],
         class: "full-absolute #{hide_on_pdf}" %>

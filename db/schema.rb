@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_06_04_160459) do
+ActiveRecord::Schema.define(version: 2024_09_12_093823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,11 @@ ActiveRecord::Schema.define(version: 2024_06_04_160459) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "client_address1"
+    t.string "client_address2"
+    t.string "client_zipcode"
+    t.string "client_city"
+    t.string "client_country"
     t.index ["user_id"], name: "index_quotes_on_user_id"
   end
 
