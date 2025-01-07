@@ -30,6 +30,8 @@ Rails.application.routes.draw do
       patch :update_client
       get :edit_infos
       patch :update_infos
+      get :edit_with_agreement
+      patch :update_with_agreement
       get :export_to_pdf
       get :new_description_block
       patch :create_description_block

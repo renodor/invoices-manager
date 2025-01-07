@@ -1,11 +1,11 @@
 .pdf-layout {
   background-color: var(--color-white);
-  .document, .calendar__body {
+  .document, .calendar__body, .description-blocks {
     box-shadow: none;
   }
 
   @media print {
-    .document, .calendar {
+    .document, .calendar, .description-blocks {
       break-inside: avoid-page;
     }
   }

@@ -1,4 +1,4 @@
-<div>
+<div class="description-blocks">
   <% quote.description_blocks.each do |description_block| %>
     <%= turbo_frame_tag nested_dom_id(@quote, :description_block, description_block['position']) do %>
       <div class="description-block">

@@ -42,8 +42,11 @@
       </div>
       <%= render 'documents/tva', document: @quote %>
     </div>
-    <%= turbo_frame_tag :description_blocks do %>
-      <%= render "description_blocks", quote: @quote %>
+    <%= turbo_frame_tag :agreement do %>
+      <%= render "agreement", quote: @quote %>
     <% end %>
   </div>
+  <%= turbo_frame_tag :description_blocks do %>
+    <%= render "description_blocks", quote: @quote %>
+  <% end %>
 </main>

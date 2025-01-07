@@ -56,6 +56,12 @@ class QuotesController < ApplicationController
     end
   end
 
+  def edit_with_agreement; end
+
+  def update_with_agreement
+    @quote.update(with_agreement: ActiveModel::Type::Boolean.new.cast(params[:with_agreement]))
+  end
+
   def new_description_block; end
 
   def create_description_block
@@ -99,7 +105,7 @@ class QuotesController < ApplicationController
   end
 
   def quote_params
-    params.require(:quote).permit(:date, :title, :client_name, :client_address1, :client_address2, :client_zipcode, :client_city, :client_country, :flavor)
+    params.require(:quote).permit(:date, :title, :client_name, :client_address1, :client_address2, :client_zipcode, :client_city, :client_country, :flavor, :with_agreement)
   end
 
   def find_description_block_by_position

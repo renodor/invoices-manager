@@ -45,6 +45,9 @@ fr:
   text: texte
   list: liste
   list_placeholder: "- Premier élément\n- Deuxième élément\n- Troisième élément"
+  good_for_agreement: Bon pour accord
+  date_and_signature: Date et signature du client
+  good_for_agreement_mention: précédées de la mention "Bon pour accord"
   number:
     currency:
       format:

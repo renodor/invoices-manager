@@ -1,0 +1,18 @@
+<div id="quote-agreement">
+  <% if quote.with_agreement? %>
+    <p><b><%= t("date_and_signature") %></b></p>
+    <p><b><%= t("good_for_agreement_mention") %></b></p>
+    <div class="quote-agreement__signature_space"></div>
+    <%= button_to [:update_with_agreement, quote], method: :patch, class: "btn btn--light btn--icon btn--spaced #{hide_on_pdf}" do %>
+      <%= hidden_field_tag :with_agreement, false %>
+      <%= svg('trash') %>
+    <% end %>
+  <% else %>
+    <div class="<%= hide_on_pdf %>">
+      <%= button_to [:update_with_agreement, quote], method: :patch, class: "btn btn--light btn--icon btn--spaced" do %>
+        <%= hidden_field_tag :with_agreement, true %>
+        <%= svg('plus') %> <%= t("good_for_agreement") %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_09_12_093823) do
+ActiveRecord::Schema.define(version: 2025_01_07_152828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(version: 2024_09_12_093823) do
     t.string "client_zipcode"
     t.string "client_city"
     t.string "client_country"
+    t.boolean "with_agreement", default: false
     t.index ["user_id"], name: "index_quotes_on_user_id"
   end
 
