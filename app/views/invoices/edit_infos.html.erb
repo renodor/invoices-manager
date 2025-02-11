@@ -6,6 +6,7 @@
         <%= svg('check') %>
       <% end %>
     </div>
+    <%= f.input :advance, label: "#{t('advance_invoice')} ?", input_html: { class: 'checkbox' }  %>
     <%= f.input :number, input_html: { autofocus: true } %>
     <%= f.input :date, html5: true %>
     <%= f.input :title %>

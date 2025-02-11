@@ -118,7 +118,7 @@ class InvoicesController < ApplicationController
   end
 
   def invoice_params
-    params.require(:invoice).permit(:date, :title, :number, :client_id, :bank_id, :locked, :flavor)
+    params.require(:invoice).permit(:date, :title, :number, :client_id, :bank_id, :locked, :flavor, :advance)
   end
 
   def assign_client_attributes_to_invoice

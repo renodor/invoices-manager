@@ -7,6 +7,7 @@ fr:
   back_to_invoices: Retour aux factures
   create_invoice_and_add_items: Créer la facture et ajouter des elements
   invoice_number: N° de facture
+  advance_invoice: Facture d'acompte
   issue_date: Date d'émission
   total_invoiced_in_year: Total facturé en %{year}
   locked_invoice: Facture bloquée non editable
@@ -27,6 +28,7 @@ fr:
     one: Devis
     other: Devis
   new_quote: Nouveau devis
+  quote_number: N° de devis
   back_to_quotes: Retour aux devis
   create_quote_and_add_items: Créer le devis et ajouter des elements
   total_quoted_in_year: Total des devis en %{year}

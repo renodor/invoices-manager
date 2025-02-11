@@ -7,6 +7,24 @@
     background-color: white;
   }
 
+  .form__group label {
+    display: none;
+  }
+
+  .form__group:has(.checkbox) {
+    display: flex;
+    align-items: center;
+    gap: var(--space-m);
+
+    input {
+      width: auto;
+    }
+
+    label {
+      display: inline;
+    }
+  }
+
   &__group {
     flex: 1;
   }

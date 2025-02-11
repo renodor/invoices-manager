@@ -48,8 +48,8 @@ class Invoice < ApplicationRecord
   def set_date_and_number
     self.date = Date.current if date.blank?
 
-    last_number = user&.invoices&.current_year&.last&.number&.slice(4..).to_i
-    self.number = "#{Time.current.year}#{last_number + 1}"
+    last_number = user&.invoices&.current_year&.last&.number&.split("-")&.last.to_i
+    self.number = "FAC-#{Time.current.year}-#{last_number + 1}"
   end
 
   def set_bank

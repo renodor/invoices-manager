@@ -1,5 +1,6 @@
 <%= turbo_frame_tag dom_id(quote, :infos) do %>
   <div class="document-infos">
+    <p><%= t('quote_number') %> : <%= quote.number %></p>
     <p><%= t('issue_date') %> : <%= quote.pretty_date %></p>
     <div class="document-infos__title"><%= quote.title %></div>
     <%= link_to '',
