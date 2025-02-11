@@ -105,8 +105,10 @@ class InvoicesController < ApplicationController
   end
 
   def export_to_pdf
+    @client = @invoice.client
+    @bank = @invoice.bank
     render_pdf(
-      locals: { :@invoice => @invoice, :@client => @invoice.client, :@bank => @invoice.bank },
+      locals: { :@invoice => @invoice, :@client => @client, :@bank => @bank },
       file_name: @invoice.pdf_file_name
     )
   end
