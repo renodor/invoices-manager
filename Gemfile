@@ -4,7 +4,7 @@ git_source(:github) { |repo| 'https://github.com/#{repo}.git' }
 ruby '3.4.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails', '~> 7.1.0'
+gem 'rails', '~> 8.0.1'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
@@ -13,7 +13,7 @@ gem 'sprockets-rails'
 gem 'pg', '~> 1.1'
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 6.0'
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem 'jsbundling-rails'
@@ -53,7 +53,7 @@ gem 'bootsnap', require: false
 
 gem 'simple_form', '~> 5.1.0'
 
-gem 'devise', '~> 4.8.1'
+gem 'devise', '~> 4.9.4'
 
 # HTML to PDF converter
 gem 'grover'
@@ -85,3 +85,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
+
+gem "tailwindcss-ruby", "~> 4.0"
+
+gem "tailwindcss-rails", "~> 4.0"

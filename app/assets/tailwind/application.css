@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Ubuntu", "sans-serif";
+  --color-primary: "#1d5c63";
+  --color-primary-rotate: "#407d7a";
+}
+
+body {
+  @apply font-display;
+}
+
+a {
+  @apply text-primary transition-colors;
+}
+
+a:hover, a:focus, a:active {
+  @apply text-primary-rotate;
+}

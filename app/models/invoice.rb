@@ -17,7 +17,7 @@ class Invoice < ApplicationRecord
   scope :ordered, -> { order(id: :desc) }
   scope :current_year, -> { where('date > ?', DateTime.new(Time.current.year, 1, 1)) }
 
-  enum flavor: {
+  enum :flavor, {
     with_tva: 0,
     without_tva: 1,
     outside_eu: 2
@@ -48,7 +48,7 @@ class Invoice < ApplicationRecord
   def set_date_and_number
     self.date = Date.current if date.blank?
 
-    last_number = user&.invoices&.current_year&.last&.number&.split("-")&.last.to_i
+    last_number = user&.invoices&.current_year&.last&.number&.split('-')&.last.to_i
     self.number = "FAC-#{Time.current.year}-#{last_number + 1}"
   end
 

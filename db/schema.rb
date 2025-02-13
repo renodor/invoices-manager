@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_02_11_211428) do
-
+ActiveRecord::Schema[7.2].define(version: 2025_02_13_172455) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,8 +20,8 @@ ActiveRecord::Schema.define(version: 2025_02_11_211428) do
     t.string "iban", null: false
     t.boolean "is_default", default: false
     t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_banks_on_user_id"
   end
 
@@ -33,10 +32,10 @@ ActiveRecord::Schema.define(version: 2025_02_11_211428) do
     t.string "zipcode"
     t.string "city"
     t.string "country"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "deleted_at"
     t.index ["user_id"], name: "index_clients_on_user_id"
   end
 
@@ -45,21 +44,21 @@ ActiveRecord::Schema.define(version: 2025_02_11_211428) do
     t.boolean "worked", default: true
     t.string "comment"
     t.bigint "invoice_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["invoice_id"], name: "index_days_on_invoice_id"
   end
 
   create_table "invoices", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "client_id", null: false
     t.string "number", null: false
     t.date "date", null: false
     t.string "title"
     t.bigint "user_id", null: false
     t.boolean "locked", default: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "deleted_at"
     t.bigint "bank_id", null: false
     t.integer "flavor", default: 0, null: false
     t.string "seller_name"
@@ -87,8 +86,8 @@ ActiveRecord::Schema.define(version: 2025_02_11_211428) do
     t.text "description", null: false
     t.integer "quantity", null: false
     t.decimal "unit_price", precision: 10, scale: 2, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "quote_id"
     t.index ["invoice_id"], name: "index_line_items_on_invoice_id"
     t.index ["quote_id"], name: "index_line_items_on_quote_id"
@@ -101,8 +100,8 @@ ActiveRecord::Schema.define(version: 2025_02_11_211428) do
     t.jsonb "description_blocks", default: [], array: true
     t.integer "flavor", default: 0, null: false
     t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "client_address1"
     t.string "client_address2"
     t.string "client_zipcode"
@@ -117,10 +116,10 @@ ActiveRecord::Schema.define(version: 2025_02_11_211428) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at", precision: 6
-    t.datetime "remember_created_at", precision: 6
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "address1"
     t.string "zipcode"
     t.string "city"
@@ -131,7 +130,7 @@ ActiveRecord::Schema.define(version: 2025_02_11_211428) do
     t.string "last_name"
     t.integer "genre"
     t.string "username"
-    t.datetime "deleted_at", precision: 6
+    t.datetime "deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

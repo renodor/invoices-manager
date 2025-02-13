@@ -9,11 +9,10 @@ class Quote < ApplicationRecord
   validates :date, :number, :client_name, presence: true
   validates :number, uniqueness: { scope: :user_id }
 
-
   scope :ordered, -> { order(id: :desc) }
   scope :current_year, -> { where('date > ?', DateTime.new(Time.current.year, 1, 1)) }
 
-  enum flavor: {
+  enum :flavor, {
     with_tva: 0,
     without_tva: 1,
     outside_eu: 2
@@ -43,7 +42,7 @@ class Quote < ApplicationRecord
   def set_date_and_number
     self.date = Date.current if date.blank?
 
-    last_number = user&.quotes&.current_year&.last&.number&.split("-")&.last.to_i
+    last_number = user&.quotes&.current_year&.last&.number&.split('-')&.last.to_i
     self.number = "DEV-#{Time.current.year}-#{last_number + 1}"
   end
 end

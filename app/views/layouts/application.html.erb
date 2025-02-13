@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', 'data-turbo-track': 'reload' %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+
     <%= javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true %>
     <%= favicon_link_tag asset_path('svgs/invoice.svg') %>
   </head>
 
-  <body>
+  <body class="flex flex-col min-h-full bg-stone-100">
     <%= render 'layouts/navbar' %>
 
     <div id="flash" class="flash">
