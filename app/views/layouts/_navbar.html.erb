@@ -1,22 +1,22 @@
-<header class="navbar">
-  <div class="container navbar__content">
+<header class="shadow-md mb-10 bg-white">
+  <div class="container mx-auto max-w-5xl py-2 px-4 flex items-center justify-end gap-3">
     <% if user_signed_in? %>
-      <div class="navbar__links">
+      <div class="flex gap-8">
         <%= link_to t("invoice", count: 2), invoices_path %>
         <%= link_to t("quote", count: 2), quotes_path %>
       </div>
-      <div class="navbar__name">
+      <div class="font-bold ml-auto text-stone-800">
         <%= "#{t('hello')} #{current_user.username}" %>
       </div>
       <%= button_to t('devise.sessions.already_signed_out'),
                     destroy_user_session_path,
                     method: :delete,
                     data: { turbo: false },
-                    class: "btn btn--dark" %>
+                    class: "btn-dark" %>
     <% else %>
       <%= link_to 'Demo',
                   sign_in_demo_user_path,
-                  class: "btn btn--light navbar__right" %>
+                  class: "btn-light" %>
     <% end %>
   </div>
 </header>

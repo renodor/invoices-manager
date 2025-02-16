@@ -1,23 +1,21 @@
-<main class="container">
-  <div class="header">
-    <h1><%= t('invoice', count: @invoices_grouped_by_year.values.size) %></h1>
-    <%= link_to t('new_invoice'),
-                new_invoice_path,
-                class: 'btn btn--primary' %>
-  </div>
+<div class="header">
+  <h1><%= t('invoice', count: @invoices_grouped_by_year.values.size) %></h1>
+  <%= link_to t('new_invoice'),
+              new_invoice_path,
+              class: 'btn btn--primary' %>
+</div>
 
-  <div class="documents">
-    <% @invoices_grouped_by_year.each do |year, invoices| %>
-      <div class="yearly-documents">
-        <h2><%= year %></h2>
-        <%= render partial: 'invoice_card', collection: invoices, as: :invoice %>
-        <div class="documents-total">
-          <div class="documents-total__line"><b><%= t('total_invoiced_in_year', year: year) %></b></div>
-          <div class="documents-total__line"><span><b><%= t('total_without_tax') %></b></span><span><b><%= number_to_currency(invoices.map(&:total_without_taxes).sum) %></b></span></div>
-          <div class="documents-total__line"><span><%= t('vat') %></span><span><%= number_to_currency(invoices.map(&:tva).sum) %></span></div>
-          <div class="documents-total__line"><span><%= t('total_tax_included') %></span><span><%= number_to_currency(invoices.map(&:total).sum) %></span></div>
-        </div>
+<div class="documents">
+  <% @invoices_grouped_by_year.each do |year, invoices| %>
+    <div class="yearly-documents">
+      <h2><%= year %></h2>
+      <%= render partial: 'invoice_card', collection: invoices, as: :invoice %>
+      <div class="documents-total">
+        <div class="documents-total__line"><b><%= t('total_invoiced_in_year', year: year) %></b></div>
+        <div class="documents-total__line"><span><b><%= t('total_without_tax') %></b></span><span><b><%= number_to_currency(invoices.map(&:total_without_taxes).sum) %></b></span></div>
+        <div class="documents-total__line"><span><%= t('vat') %></span><span><%= number_to_currency(invoices.map(&:tva).sum) %></span></div>
+        <div class="documents-total__line"><span><%= t('total_tax_included') %></span><span><%= number_to_currency(invoices.map(&:total).sum) %></span></div>
       </div>
-    <% end %>
-  </div>
-</main>
+    </div>
+  <% end %>
+</div>
