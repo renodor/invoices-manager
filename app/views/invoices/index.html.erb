@@ -1,20 +1,29 @@
-<div class="header">
-  <h1><%= t('invoice', count: @invoices_grouped_by_year.values.size) %></h1>
+<div class="flex justify-between items-center mt-4 mb-8">
+  <h1 class="text-3xl font-bold"><%= t('invoice', count: @invoices_grouped_by_year.values.size) %></h1>
   <%= link_to t('new_invoice'),
               new_invoice_path,
-              class: 'btn btn--primary' %>
+              class: 'btn-primary' %>
 </div>
 
-<div class="documents">
+<div class="flex flex-col gap-10">
   <% @invoices_grouped_by_year.each do |year, invoices| %>
-    <div class="yearly-documents">
-      <h2><%= year %></h2>
+    <div>
+      <h2 class="mb-4 text-2xl font-bold"><%= year %></h2>
       <%= render partial: 'invoice_card', collection: invoices, as: :invoice %>
-      <div class="documents-total">
-        <div class="documents-total__line"><b><%= t('total_invoiced_in_year', year: year) %></b></div>
-        <div class="documents-total__line"><span><b><%= t('total_without_tax') %></b></span><span><b><%= number_to_currency(invoices.map(&:total_without_taxes).sum) %></b></span></div>
-        <div class="documents-total__line"><span><%= t('vat') %></span><span><%= number_to_currency(invoices.map(&:tva).sum) %></span></div>
-        <div class="documents-total__line"><span><%= t('total_tax_included') %></span><span><%= number_to_currency(invoices.map(&:total).sum) %></span></div>
+      <div class="my-6 flex flex-col items-end">
+        <div class="px-4 py-1.5"><b><%= t('total_invoiced_in_year', year: year) %></b></div>
+        <div class="px-4 py-1.5 flex justify-around">
+          <span class="min-w-24"><b><%= t('total_without_tax') %></b></span>
+          <span class="min-w-24 text-right"><b><%= number_to_currency(invoices.map(&:total_without_taxes).sum) %></b></span>
+        </div>
+        <div class="px-4 py-1.5 flex justify-around">
+          <span class="min-w-24"><%= t('vat') %></span>
+          <span class="min-w-24 text-right"><%= number_to_currency(invoices.map(&:tva).sum) %></span>
+        </div>
+        <div class="px-4 py-1.5 flex justify-around">
+          <span class="min-w-24"><%= t('total_tax_included') %></span>
+          <span class="min-w-24 text-right"><%= number_to_currency(invoices.map(&:total).sum) %></span>
+        </div>
       </div>
     </div>
   <% end %>

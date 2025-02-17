@@ -2,12 +2,14 @@
 
 @theme {
   --font-display: "Ubuntu", "sans-serif";
-  --color-primary: "#1d5c63";
-  --color-primary-rotate: "#407d7a";
+  --color-primary: #1d5c63;
+  --color-primary-rotate: #407d7a;
+  --color-body-bg: #fcfaf7;
+  --color-body-text: #1A3C40;
 }
 
 body {
-  @apply font-display;
+  @apply font-display text-body-text;
 }
 
 a {
@@ -16,6 +18,10 @@ a {
 
 a:hover, a:focus, a:active {
   @apply text-primary-rotate;
+}
+
+.btn-primary {
+  @apply rounded-md py-2 px-4 font-bold text-white bg-linear-to-r from-primary to-primary-rotate cursor-pointer transition-all hover:saturate-115 hover:brightness-115 hover:text-white
 }
 
 .btn-dark {
