@@ -9,7 +9,7 @@
 }
 
 body {
-  @apply font-display text-body-text;
+  @apply font-display font-medium text-body-text;
 }
 
 a {
@@ -30,4 +30,8 @@ a:hover, a:focus, a:active {
 
 .btn-light {
   @apply bg-gray-300 text-stone-800 rounded-md py-2 px-4 font-bold cursor-pointer transition-colors hover:bg-gray-400/60 hover:text-stone-800
+}
+
+.form-input {
+  @apply w-full rounded-md p-1 border-2 border-stone-200
 }

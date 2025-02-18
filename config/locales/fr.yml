@@ -9,7 +9,7 @@ fr:
   invoice_number: N° de facture
   advance_invoice: Facture d'acompte
   issue_date: Date d'émission
-  total_invoiced_in_year: Total facturé en %{year}
+  total_invoice_in_year: Total facturé en %{year}
   locked_invoice: Facture bloquée non editable
   no_tva_explaination: TVA non applicable, article %{tva_cgi_article} du Code Général des Impôts
   payment_informations: Informations de paiement
@@ -31,7 +31,7 @@ fr:
   quote_number: N° de devis
   back_to_quotes: Retour aux devis
   create_quote_and_add_items: Créer le devis et ajouter des elements
-  total_quoted_in_year: Total des devis en %{year}
+  total_quote_in_year: Total des devis en %{year}
   description: Description
   qty: Qté
   unit_price: Prix unitaire

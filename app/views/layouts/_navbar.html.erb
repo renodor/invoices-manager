@@ -1,7 +1,7 @@
 <header class="shadow-md mb-10 bg-white">
   <div class="container mx-auto max-w-5xl py-2 px-4 flex items-center justify-end gap-3">
     <% if user_signed_in? %>
-      <div class="flex gap-8">
+      <div class="flex gap-8 font-bold">
         <%= link_to t("invoice", count: 2), invoices_path %>
         <%= link_to t("quote", count: 2), quotes_path %>
       </div>

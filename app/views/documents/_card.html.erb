@@ -1,12 +1,12 @@
 <div class="relative bg-white shadow-md rounded-md flex items-center gap-3 mb-4 p-4 border border-transparent transition-colors duration-300 hover:border-primary">
   <div class="flex items-center shrink-0 gap-3 pr-3 border-r border-primary">
-    <span class="font-bold"># <%= invoice.number %></span>
-    <span><%= invoice.client_name %></span>
+    <span class="font-bold"># <%= document.number %></span>
+    <span><%= document.client_name %></span>
   </div>
-  <span class="grow"><%= invoice.title %></span>
-  <span><%= invoice.pretty_date %></span>
-  <% if invoice.locked %>
+  <span class="grow"><%= document.title %></span>
+  <span><%= document.pretty_date %></span>
+  <% if document.try(:locked) %>
     <span><%= svg('lock') %></span>
   <% end %>
-  <%= link_to '', invoice_path(invoice), class: 'absolute inset-0' %>
+  <%= link_to '', [document], class: 'absolute inset-0' %>
 </div>

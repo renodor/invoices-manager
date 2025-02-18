@@ -2,11 +2,11 @@
 
 SimpleForm.setup do |config|
   # Wrappers configration
-  config.wrappers :default, class: 'form__group' do |b|
+  config.wrappers :default do |b|
     b.use :html5
     b.use :placeholder
     b.use :label
-    b.use :input, class: 'form__input', error_class: 'form__input--invalid'
+    b.use :input, class: 'form-input', error_class: 'form__input--invalid'
   end
 
   # Default configuration
