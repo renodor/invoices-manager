@@ -28,12 +28,13 @@ class InvoicesController < ApplicationController
     @invoice.seller_email = current_user.email
     @invoice.seller_website = current_user.website
     @invoice.seller_siren = current_user.siren
-    assign_client_attributes_to_invoice
+    assign_client_attributes_to_invoice if @invoice.client
 
     if @invoice.save
       redirect_to invoice_path(@invoice), notice: 'Invoice was successfully created.'
     else
       @clients = current_user.clients.not_deleted
+      flash.now[:alert] = I18n.t('invoice_creation_error')
       render :new, status: :unprocessable_entity
     end
   end

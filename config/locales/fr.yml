@@ -6,6 +6,8 @@ fr:
   new_invoice: Nouvelle facture
   back_to_invoices: Retour aux factures
   create_invoice_and_add_items: Créer la facture et ajouter des elements
+  invoice_creation_success: Facture correctement crée
+  invoice_creation_error: Erreur lors de la création de votre facture. Vérifer que tous les champs sont correctement renseignés
   invoice_number: N° de facture
   advance_invoice: Facture d'acompte
   issue_date: Date d'émission

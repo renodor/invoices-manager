@@ -9,7 +9,7 @@
 }
 
 body {
-  @apply font-display font-medium text-body-text;
+  @apply font-display text-body-text;
 }
 
 a {
@@ -33,5 +33,5 @@ a:hover, a:focus, a:active {
 }
 
 .form-input {
-  @apply w-full rounded-md p-1 border-2 border-stone-200
+  @apply w-full rounded-md p-1 border-2 border-stone-200 bg-white
 }
