@@ -13,7 +13,7 @@ body {
 }
 
 a {
-  @apply text-primary transition-colors;
+  @apply text-primary transition-all;
 }
 
 a:hover, a:focus, a:active {
@@ -30,6 +30,10 @@ a:hover, a:focus, a:active {
 
 .btn-light {
   @apply bg-gray-300 text-stone-800 rounded-md py-2 px-4 font-bold cursor-pointer transition-colors hover:bg-gray-400/60 hover:text-stone-800
+}
+
+.btn-icon {
+  @apply bg-stone-200 p-2 rounded-md cursor-pointer transition-all hover:brightness-95
 }
 
 .form-input {

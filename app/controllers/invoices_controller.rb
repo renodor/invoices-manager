@@ -31,7 +31,7 @@ class InvoicesController < ApplicationController
     assign_client_attributes_to_invoice if @invoice.client
 
     if @invoice.save
-      redirect_to invoice_path(@invoice), notice: 'Invoice was successfully created.'
+      redirect_to invoice_path(@invoice), notice: I18n.t('invoice_creation_success')
     else
       @clients = current_user.clients.not_deleted
       flash.now[:alert] = I18n.t('invoice_creation_error')
