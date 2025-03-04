@@ -1,8 +1,8 @@
 <%= turbo_frame_tag dom_id(invoice, :infos) do %>
-  <div class="document-infos <%= class_names(locked: invoice.locked?) %>">
+  <div class="relative px-4 py-3 duration-300 has-[a:hover]:shadow-md">
     <p><%= t('invoice_number') %> : <%= invoice.number %></p>
     <p><%= t('issue_date') %> : <%= invoice.pretty_date %></p>
-    <div class="document-infos__title">
+    <div class="mt-6 font-extrabold">
       <% if invoice.advance? %>
         <p><%= t('advance_invoice') %></p>
       <% end %>
@@ -11,7 +11,7 @@
     <% unless invoice.locked %>
       <%= link_to '',
         [:edit_infos, invoice],
-        class: "full-absolute #{hide_on_pdf}" %>
+        class: "absolute inset-0 #{hide_on_pdf}" %>
     <% end %>
   </div>
 <% end %>

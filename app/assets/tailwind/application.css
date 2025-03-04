@@ -21,7 +21,7 @@ a:hover, a:focus, a:active {
 }
 
 .btn-primary {
-  @apply rounded-md py-2 px-4 font-bold text-white bg-linear-to-r from-primary to-primary-rotate cursor-pointer transition-all hover:saturate-115 hover:brightness-115 hover:text-white
+  @apply bg-linear-to-r from-primary to-primary-rotate text-white rounded-md py-2 px-4 font-bold cursor-pointer transition-all hover:saturate-115 hover:brightness-115 hover:text-white
 }
 
 .btn-dark {
@@ -32,10 +32,14 @@ a:hover, a:focus, a:active {
   @apply bg-gray-300 text-stone-800 rounded-md py-2 px-4 font-bold cursor-pointer transition-colors hover:bg-gray-400/60 hover:text-stone-800
 }
 
+.btn-icon-primary {
+  @apply bg-linear-to-r from-primary to-primary-rotate text-white p-2 rounded-md cursor-pointer transition-all hover:saturate-115 hover:brightness-115 hover:text-white
+}
+
 .btn-icon {
-  @apply bg-stone-200 p-2 rounded-md cursor-pointer transition-all hover:brightness-95
+  @apply bg-gray-200 text-body-text p-2 rounded-md cursor-pointer transition-all hover:brightness-95 hover:text-body-text
 }
 
 .form-input {
-  @apply w-full rounded-md p-1 border-2 border-stone-200 bg-white
+  @apply w-full rounded-md p-1 border-2 border-gray-200 bg-white
 }

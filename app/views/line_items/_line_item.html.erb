@@ -1,16 +1,16 @@
 <%= turbo_frame_tag line_item do %>
-  <div class="line-item <%= class_names(locked: document.try(:locked?)) %>">
-    <span class="line-item__description"><%= line_item.description %></span>
-    <span class="line-item__quantity"><%= line_item.quantity %></span>
-    <span class="line-item__price"><%= number_to_currency(line_item.unit_price) %></span>
+  <div class="relative flex items-center gap-2 px-4 py-3 border-b border-gray-200 duration-300 has-[a:hover]:shadow-md">
+    <span class="w-[307px]"><%= line_item.description %></span>
+    <span class="text-right w-[50px]"><%= line_item.quantity %></span>
+    <span class="text-right w-[120px]"><%= number_to_currency(line_item.unit_price) %></span>
     <% if document.flavor == 'with_tva' %>
-      <span class="line-item__tva"><%= number_to_percentage(Invoice::TVA * 100, precision: 0) %></span>
+      <span class="text-right w-[60px]"><%= number_to_percentage(Invoice::TVA * 100, precision: 0) %></span>
     <% end %>
-    <span class="line-item__total"><%= number_to_currency(line_item.total_price) %></span>
+    <span class="text-right w-[120px]"><%= number_to_currency(line_item.total_price) %></span>
     <% unless document.try(:locked?) %>
       <%= link_to '',
                   [:edit, document, line_item],
-                  class: "line-item__edit #{hide_on_pdf}" %>
+                  class: "absolute inset-0 #{hide_on_pdf}" %>
     <% end %>
   </div>
 <% end %>

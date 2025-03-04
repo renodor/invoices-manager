@@ -1,10 +1,17 @@
 <%= turbo_frame_tag dom_id(@invoice, :client) do %>
   <div>
-    <%= simple_form_for @invoice, url: update_client_invoice_path(@invoice), html: { class: 'form' } do |f| %>
-      <%= f.input :client_id, collection: @clients, selected: @client.id, input_html: { autofocus: true } %>
-      <%= link_to svg('return'), invoice_path(@invoice), class: 'btn btn--light btn--icon' %>
-      <%= button_tag class: 'btn btn--primary btn--icon' do %>
-        <%= svg('check') %>
+    <%= simple_form_for @invoice, url: update_client_invoice_path(@invoice), html: { class: 'flex justify-end gap-2' } do |f| %>
+      <%=
+        f.input :client_id,
+        collection: @clients,
+        selected: @client.id,
+        label: false,
+        wrapper_html: { class: 'flex-grow' },
+        input_html: { autofocus: true }
+      %>
+      <%= link_to svg('return', 'w-4 h-4'), invoice_path(@invoice), class: 'btn-icon' %>
+      <%= button_tag class: 'btn-icon-primary' do %>
+        <%= svg('check', 'w-4 h-4') %>
       <% end %>
     <% end %>
   </div>

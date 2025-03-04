@@ -1,34 +1,41 @@
-<div class="line-item line-item--form">
-  <%= simple_form_for [document, line_item],
-                      html: { class: 'form' } do |f| %>
-
-    <%= f.input :description,
-                wrapper_html: { class: 'line-item__description' },
-                input_html: { autofocus: true } %>
-    <%= f.input :quantity,
-                wrapper_html: { class: 'line-item__quantity' } %>
-    <%= f.input :unit_price,
-                wrapper_html: { class: 'line-item__price' } %>
-    <% if document.flavor == 'with_tva' %>
-      <span class="line-item__tva"><%= number_to_percentage(Invoice::TVA * 100, precision: 0) %></span>
-    <% end %>
-
+<div class="flex items-center px-4 py-3 border-b border-gray-200">
+  <%= simple_form_for [document, line_item], html: { class: 'grow flex items-center gap-2' } do |f| %>
     <%=
-      link_to svg('return'),
-      document.is_a?(Invoice) ? invoice_path(document) : quote_path(document),
-      class: 'btn btn--light btn--icon'
+      f.input :description,
+      label: false,
+      wrapper_html: { class: 'w-[307px]' },
+      input_html: { autofocus: true, class: 'flex h-9' }
     %>
-
-    <%= button_tag class: 'btn btn--primary btn--icon' do %>
-      <%= svg('check') %>
+    <%=
+      f.input :quantity,
+      label: false,
+      wrapper_html: { class: 'w-[50px]' },
+      input_html: { class: 'text-right' }
+    %>
+    <%=
+      f.input :unit_price,
+      label: false,
+      wrapper_html: { class: 'w-[120px]' },
+      input_html: { class: 'text-right' }
+    %>
+    <% if document.flavor == 'with_tva' %>
+      <span class="w-[60px] text-right"><%= number_to_percentage(Invoice::TVA * 100, precision: 0) %></span>
     <% end %>
   <% end %>
-  <div class="line-item__destroy_button">
+  <div class="flex items-center gap-2">
+    <%=
+      link_to svg('return', 'w-4 h-4'),
+      document.is_a?(Invoice) ? invoice_path(document) : quote_path(document),
+      class: 'btn-icon'
+    %>
+    <%= button_tag class: 'btn-icon-primary', form: line_item.new_record? ? 'new_line_item' : "edit_line_item_#{line_item.id}" do %>
+      <%= svg('check', 'w-4 h-4') %>
+    <% end %>
     <% unless %w[new create].include?(params[:action]) %>
-      <%= button_to svg('trash'),
+      <%= button_to svg('trash', 'w-4 h-4'),
                     [document, line_item],
                     method: :delete,
-                    class: 'btn btn--light btn--icon' %>
+                    class: 'btn-icon' %>
     <% end %>
   </div>
 </div>

@@ -1,11 +1,11 @@
 <%= turbo_frame_tag dom_id(document, :line_items_header) do %>
-  <div class="line-item line-item--header locked">
-    <span class="line-item__description"><%= t('description') %></span>
-    <span class="line-item__quantity"><%= t('qty') %></span>
-    <span class="line-item__price"><%= t('unit_price') %></span>
+  <div class="bg-gray-200 px-4 py-3 flex items-center gap-2 border-b border-gray-200 font-extrabold">
+    <span class="grow"><%= t('description') %></span>
+    <span class="text-right shrink-0 w-[50px]"><%= t('qty') %></span>
+    <span class="text-right shrink-0 w-[120px]"><%= t('unit_price') %></span>
     <% if document.flavor == 'with_tva' %>
-      <span class="line-item__tva"><%= t('vat') %> %</span>
+      <span class="text-right shrink-0 w-[60px]"><%= t('vat') %> %</span>
     <% end %>
-    <span class="line-item__total"><%= t('total_without_tax') %></span>
+    <span class="text-right shrink-0 w-[120px]"><%= t('total_without_tax') %></span>
   </div>
 <% end %>

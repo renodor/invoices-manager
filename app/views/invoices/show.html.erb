@@ -21,8 +21,8 @@
       <%= link_to 'PDF', export_to_pdf_invoice_path(@invoice, format: :pdf), class: 'btn-primary' %>
     </div>
   </div>
-  <div class="flex flex-col gap-10 bg-white rounded-md shadow-md p-4 mb-6">
-    <div class="flex justify-between">
+  <div class="flex flex-col bg-white rounded-md shadow-md p-4 mb-6">
+    <div class="flex justify-between mb-7">
       <div class="w-1/2 shrink-0 px-4 py-2">
         <p class="uppercase font-extrabold mb-3"><%= @invoice.seller_name %></p>
         <p class="uppercase"><%= @invoice.seller_address1 %></p>
@@ -32,30 +32,28 @@
           <p><%= @invoice.seller_email %></p>
           <p><%= @invoice.seller_website %></p>
         </div>
-        <p class="font-extrabold mb-3">SIREN: <%= @invoice.seller_siren %></p>
+        <p class="font-extrabold">SIREN: <%= @invoice.seller_siren %></p>
       </div>
       <div class="w-1/2 shrink-0 text-right">
         <%= render 'invoices/client', invoice: @invoice %>
       </div>
     </div>
 
-    <div class="document__infos">
-      <%= render 'infos', invoice: @invoice %>
-    </div>
+    <%= render 'infos', invoice: @invoice %>
 
-    <div class="document__body">
-      <div class="document__line-items">
+    <div class="px-4 py-3">
+      <div class="flex flex-col">
         <%= render 'line_items/header', document: @invoice %>
         <%= turbo_frame_tag nested_dom_id(@invoice, :line_items) do %>
           <%= render @invoice.line_items.ordered, document: @invoice %>
         <% end %>
         <%= turbo_frame_tag nested_dom_id(@invoice, LineItem.new) %>
         <% unless @invoice.locked %>
-          <%= button_to svg('plus'),
+          <%= button_to svg('plus', 'w-4 h-4'),
                       [:new, @invoice, :line_item],
                       method: :get,
                       data: { turbo_frame: nested_dom_id(@invoice, LineItem.new) },
-                      class: "btn btn--light btn--icon btn--spaced #{hide_on_pdf}" %>
+                      class: "btn-icon m-2 #{hide_on_pdf}" %>
         <% end %>
         <%= turbo_frame_tag dom_id(@invoice, :total) do %>
           <%= render 'documents/total', document: @invoice %>
