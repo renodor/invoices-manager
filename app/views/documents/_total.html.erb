@@ -1,13 +1,28 @@
-<div class="document__total">
+<div class="flex flex-col items-end mt-4">
   <% if document.flavor == 'with_tva' %>
-    <div class="document__total__line">
-      <span><%= t('total_without_tax') %></span> <span><%= number_to_currency(document.total_without_taxes) %></span>
+    <div class="px-4 py-1.5 flex justify-between">
+      <span class="min-w-[100px]">
+        <%= t('total_without_tax') %>
+      </span>
+      <span class="min-w-[100px] text-right">
+        <%= number_to_currency(document.total_without_taxes) %>
+      </span>
     </div>
-    <div class="document__total__line">
-      <span><%= t('vat') %></span> <span><%= number_to_currency(document.tva) %></span>
+    <div class="px-4 py-1.5 flex justify-between">
+      <span class="min-w-[100px]">
+        <%= t('vat') %>
+      </span>
+      <span class="min-w-[100px] text-right">
+        <%= number_to_currency(document.tva) %>
+      </span>
     </div>
   <% end %>
-  <div class="document__total__line highlighted">
-    <span><%= t('total') %></span> <span><%= number_to_currency(document.total) %></span>
+  <div class="mt-3 px-4 py-1.5 flex justify-between bg-gray-200 font-extrabold">
+    <span class="min-w-[100px]">
+      <%= t('total') %>
+    </span>
+    <span class="min-w-[100px] text-right">
+      <%= number_to_currency(document.total) %>
+    </span>
   </div>
 </div>

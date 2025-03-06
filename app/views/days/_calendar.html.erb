@@ -1,42 +1,42 @@
-  <%= turbo_frame_tag dom_id(invoice, :calendar) do %>
-    <div class="calendar">
-      <% if invoice.days.present? %>
-        <div class="calendar__body">
-          <p class="document__title"><%= t('calendar.working_days') %></p>
-          <div class="day day--header locked">
-            <span class="day__date"><%= t('calendar.date') %></span>
-            <span class="day__week-day"><%= t('calendar.day') %></span>
-            <span class="day__worked-hours"><%= t('calendar.working_hours') %></span>
-            <span class="day__comment"><%= t('calendar.comment') %></span>
-          </div>
-          <%= render invoice.days.ordered, invoice: invoice %>
-          <%= render 'days/calendar_total', invoice: invoice %>
+<%= turbo_frame_tag dom_id(invoice, :calendar) do %>
+  <div>
+    <% if invoice.days.present? %>
+      <div class="mb-4 p-12 bg-white rounded-md shadow-md">
+        <p class="uppercase font-extrabold mb-3"><%= t('calendar.working_days') %></p>
+        <div class="py-1.5 px-4 bg-gray-200 border-b border-gray-200 font-extrabold flex items-center gap-2">
+          <span class="shrink-0 w-[130px]"><%= t('calendar.date') %></span>
+          <span class="shrink-0 w-[130px]"><%= t('calendar.day') %></span>
+          <span class="shrink-0 w-[150px] text-center"><%= t('calendar.working_hours') %></span>
+          <span class="grow text-right"><%= t('calendar.comment') %></span>
         </div>
-        <% unless invoice.locked %>
-          <div class="calendar__action">
-            <%= button_to t('calendar.remove_calendar'), remove_month_invoice_days_path(invoice), class: "btn btn--light #{hide_on_pdf}" %>
-          </div>
-        <% end %>
-      <% else %>
-        <% unless invoice.locked %>
-          <div class="calendar__action">
-            <%= simple_form_for '', url: generate_month_invoice_days_path(invoice), html: { class: "form  #{hide_on_pdf}" } do |f| %>
-              <%=
-                select_tag(
-                  'date',
-                  options_for_select(
-                    (0..2).each_with_object({}) do |num, hash|
-                      hash[l(Date.current - num.month, format: :only_month)] = Date.current - num.month
-                    end,
-                    Date.current - 1.month
-                  ),
-                  class: 'form__input form__input--width-auto'
-                )
-              %>
-              <%= f.submit t('calendar.add_calendar'), class: "btn btn--light" %>
-            <% end %>
-          </div>
-        <% end %>
+        <%= render invoice.days.ordered, invoice: invoice %>
+        <%= render 'days/calendar_total', invoice: invoice %>
+      </div>
+      <% unless invoice.locked %>
+        <div class="flex justify-end">
+          <%= button_to t('calendar.remove_calendar'), remove_month_invoice_days_path(invoice), class: "btn-light #{hide_on_pdf}" %>
+        </div>
       <% end %>
-    </div>
-  <% end %>
+    <% else %>
+      <% unless invoice.locked %>
+        <div class="flex justify-end">
+          <%= simple_form_for '', url: generate_month_invoice_days_path(invoice), html: { class: "flex gap-2 #{hide_on_pdf}" } do |f| %>
+            <%=
+              select_tag(
+                'date',
+                options_for_select(
+                  (0..2).each_with_object({}) do |num, hash|
+                    hash[l(Date.current - num.month, format: :only_month)] = Date.current - num.month
+                  end,
+                  Date.current - 1.month
+                ),
+                class: 'form-input'
+              )
+            %>
+            <%= f.submit t('calendar.add_calendar'), class: "btn-light" %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

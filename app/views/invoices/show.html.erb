@@ -1,4 +1,4 @@
-<div class="max-w-[817px] mx-auto px-4">
+<div class="max-w-[817px] mx-auto mb-20 px-4">
   <div class="flex items-center justify-between mb-4 <%= hide_on_pdf %>">
     <%= link_to sanitize("&larr; #{t('back_to_invoices')}"), invoices_path %>
     <% if @invoice.locked %>
@@ -64,6 +64,5 @@
 
     <%= render 'payment', invoice: @invoice, bank: @bank %>
   </div>
+  <%= render 'days/calendar', invoice: @invoice %>
 <div>
-
-<%= render 'days/calendar', invoice: @invoice %>

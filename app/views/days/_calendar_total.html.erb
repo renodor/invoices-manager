@@ -1,6 +1,6 @@
 <%= turbo_frame_tag dom_id(invoice, :calendar_total) do %>
-  <div class="day day--header locked">
-    <span class="day__total">Total</span>
-    <span class="day__count"><%= invoice.days.where(worked: true).count * 8 %></span>
+  <div class="py-1.5 px-4 bg-gray-200 border-b border-gray-200 font-extrabold flex items-center gap-2">
+    <span class="shrink-0 w-[260px]">Total</span>
+    <span class="shrink-0 w-[150px] text-center"><%= invoice.days.where(worked: true).count * 8 %></span>
   </div>
 <% end %>

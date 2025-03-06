@@ -1,15 +1,14 @@
 <%= turbo_frame_tag dom_id(@invoice, :payment) do %>
-  <div class="invoice-payment invoice-payment--focus">
-    <%= simple_form_for @invoice, url: update_bank_invoice_path(@invoice), html: { class: 'form invoice-payment--form' } do |f| %>
-      <%= f.input :bank_id,
-                  collection: @banks,
-                  selected: @bank.id,
-                  input_html: { autofocus: true },
-                  wrapper_html: { class: 'invoice-payment__input' } %>
-      <%= link_to svg('return'), invoice_path(@invoice), class: 'btn btn--light btn--icon' %>
-      <%= button_tag class: 'btn btn--primary btn--icon' do %>
-        <%= svg('check') %>
-      <% end %>
+  <%= simple_form_for @invoice, url: update_bank_invoice_path(@invoice), html: { class: 'px-4 py-3 mt-8 flex items-center gap-2' } do |f| %>
+    <%= f.input :bank_id,
+                collection: @banks,
+                selected: @bank.id,
+                label: false,
+                input_html: { autofocus: true },
+                wrapper_html: { class: 'w-1/2' } %>
+    <%= link_to svg('return', 'w-4 h-4'), invoice_path(@invoice), class: 'btn-icon' %>
+    <%= button_tag class: 'btn-icon-primary' do %>
+      <%= svg('check', 'w-4 h-4') %>
     <% end %>
-  </div>
+  <% end %>
 <% end %>

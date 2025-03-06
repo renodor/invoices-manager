@@ -1,14 +1,19 @@
-<%= simple_form_for [invoice, day], html: { class: 'form day day--form' } do |f| %>
-  <span class="day__date"><%= day.date %></span>
-  <div class="day__week-day">
+<%= simple_form_for [invoice, day], html: { class: 'px-4 py-1.5 flex items-center gap-2' } do |f| %>
+  <span class="shrink-0 w-[130px]"><%= day.pretty_date %></span>
+  <div class="shrink-0 w-[130px] flex">
     <label for="day_worked">Worked day?</label>
-    <%= f.input :worked %>
+    <%= f.input :worked, label: false, wrapper_html: { class: 'grow' } %>
   </div>
-  <%= f.input :comment %>
-  <div class="day__actions">
-    <%= link_to svg('return'), :back, class: 'btn btn--light btn--icon' %>
-    <%= button_tag class: 'btn btn--primary btn--icon' do %>
-      <%= svg('check') %>
+  <%=
+    f.input :comment,
+    label: false,
+    input_html: { class: 'text-right' },
+    wrapper_html: { class: 'grow' }
+  %>
+  <div class="flex gap-2">
+    <%= link_to svg('return', 'w-4 h-4'), :back, class: 'btn-icon' %>
+    <%= button_tag class: 'btn-icon-primary' do %>
+      <%= svg('check', 'w-4 h-4') %>
     <% end %>
   </div>
 <% end %>

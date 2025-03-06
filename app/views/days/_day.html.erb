@@ -1,11 +1,11 @@
 <%= turbo_frame_tag day do %>
-  <div class="day <%= class_names(locked: invoice.locked?, 'day--not-worked' => !day.worked?) %>">
-    <span class="day__date"><%= day.pretty_date %></span>
-    <span class="day__week-day bold"><%= l(day.date, format: :only_abbr_day) %></span>
-    <span class="day__worked-hours"><%= day.worked ? '8' : '0' %></span>
-    <span class="day__comment"><%= day.comment %></span>
+  <div class="relative px-4 py-1.5 border-b border-gray-200 flex items-center gap-2 duration-300 has-[a:hover]:shadow-md <%= class_names("bg-orange-100" => !day.worked?) %>">
+    <span class="shrink-0 w-[130px]"><%= day.pretty_date %></span>
+    <span class="shrink-0 w-[130px] font-bold"><%= l(day.date, format: :only_abbr_day) %></span>
+    <span class="shrink-0 w-[150px] text-center"><%= day.worked ? '8' : '0' %></span>
+    <span class="grow text-right"><%= day.comment %></span>
     <% unless invoice.locked %>
-      <%= link_to '', [:edit, invoice, day], class: "full-absolute #{hide_on_pdf}" %>
+      <%= link_to '', [:edit, invoice, day], class: "absolute inset-0 #{hide_on_pdf}" %>
     <% end %>
   </div>
 <% end %>
