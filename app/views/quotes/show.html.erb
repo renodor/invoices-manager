@@ -1,28 +1,26 @@
-<main class="document-container">
-  <div class="document-nav <%= hide_on_pdf %>">
+<div class="max-w-[817px] mx-auto mb-20 px-4">
+  <div class="flex items-center justify-between mb-4 <%= hide_on_pdf %>">
     <%= link_to sanitize("&larr; #{t('back_to_quotes')}"), quotes_path %>
-    <div class="document-nav__right">
-      <%= button_to svg('trash'),
+    <div class="flex gap-3 items-center">
+      <%= button_to svg('trash', 'w-6 h-6'),
                     @quote,
                     method: :delete,
                     form: { data: { turbo_confirm: t('are_you_sure') } },
-                    class: 'btn btn--light btn--icon' %>
-      <%= link_to 'PDF', export_to_pdf_quote_path(@quote, format: :pdf), class: 'btn btn--primary' %>
+                    class: 'btn-icon' %>
+      <%= link_to 'PDF', export_to_pdf_quote_path(@quote, format: :pdf), class: 'btn-primary' %>
     </div>
   </div>
-  <div class="document">
-    <div class="document__header">
-      <div class="document__user">
+  <div class="flex flex-col bg-white rounded-md shadow-md p-4 mb-6 print:break-inside-avoid-page group-[[data-pdf='true']]:shadow-none">
+    <div class="flex justify-between mb-7">
+      <div class="w-1/2 shrink-0 px-4 py-2">
         <%= render 'documents/user', user: @quote.user %>
       </div>
-      <div class="document__client">
+      <div class="w-1/2 shrink-0 text-right">
         <%= render 'client', quote: @quote %>
       </div>
     </div>
 
-    <div class="document__infos">
-      <%= render 'infos', quote: @quote %>
-    </div>
+    <%= render 'infos', quote: @quote %>
 
     <div class="document__body">
       <div class="document__line-items">
@@ -49,4 +47,4 @@
   <%= turbo_frame_tag :description_blocks do %>
     <%= render "description_blocks", quote: @quote %>
   <% end %>
-</main>
+</div>

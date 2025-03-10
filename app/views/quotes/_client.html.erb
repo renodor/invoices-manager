@@ -1,24 +1,24 @@
 <%= turbo_frame_tag dom_id(quote, :client) do %>
-  <div class="document-client">
-    <p class="document__title"><%= quote.client_name %></p>
+  <div class="relative mt-4 px-4 py-2 duration-300 has-[a:hover]:shadow-md">
+    <p class="uppercase font-extrabold mb-3"><%= quote.client_name %></p>
     <% if quote.client_address1.present? %>
-      <p class="document__upcase"><%= quote.client_address1 %></p>
+      <p class="uppercase"><%= quote.client_address1 %></p>
     <% end %>
     <% if quote.client_address2.present? %>
-      <p class="document__upcase"><%= quote.client_address2 %></p>
+      <p class="uppercase"><%= quote.client_address2 %></p>
     <% end %>
     <% if quote.client_zipcode.present? %>
-      <p class="document__upcase"><%= quote.client_zipcode %></p>
+      <p class="uppercase"><%= quote.client_zipcode %></p>
     <% end %>
     <% if quote.client_city.present? %>
-      <p class="document__upcase"><%= quote.client_city %></p>
+      <p class="uppercase"><%= quote.client_city %></p>
     <% end %>
     <% if quote.client_country.present? %>
-      <p class="document__upcase"><%= quote.client_country %></p>
+      <p class="uppercase"><%= quote.client_country %></p>
     <% end %>
 
     <%= link_to '',
         [:edit_client, quote],
-        class: "full-absolute #{hide_on_pdf}" %>
+        class: "absolute inset-0 #{hide_on_pdf}" %>
   </div>
 <% end %>
