@@ -1,6 +1,6 @@
 <%= turbo_frame_tag line_item do %>
   <div class="relative flex items-center gap-2 px-4 py-3 border-b border-gray-200 duration-300 has-[a:hover]:shadow-md">
-    <span class="w-[307px]"><%= line_item.description %></span>
+    <span class="grow"><%= line_item.description %></span>
     <span class="text-right w-[50px]"><%= line_item.quantity %></span>
     <span class="text-right w-[120px]"><%= number_to_currency(line_item.unit_price) %></span>
     <% if document.flavor == 'with_tva' %>

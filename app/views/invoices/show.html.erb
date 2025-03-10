@@ -21,7 +21,7 @@
       <%= link_to 'PDF', export_to_pdf_invoice_path(@invoice, format: :pdf), class: 'btn-primary' %>
     </div>
   </div>
-  <div class="flex flex-col bg-white rounded-md shadow-md p-4 mb-6">
+  <div class="flex flex-col bg-white rounded-md shadow-md p-4 mb-6 print:break-inside-avoid-page group-[[data-pdf='true']]:shadow-none">
     <div class="flex justify-between mb-7">
       <div class="w-1/2 shrink-0 px-4 py-2">
         <p class="uppercase font-extrabold mb-3"><%= @invoice.seller_name %></p>

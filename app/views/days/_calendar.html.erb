@@ -1,7 +1,7 @@
 <%= turbo_frame_tag dom_id(invoice, :calendar) do %>
   <div>
     <% if invoice.days.present? %>
-      <div class="mb-4 p-12 bg-white rounded-md shadow-md">
+      <div class="mb-4 p-12 bg-white rounded-md shadow-md print:break-inside-avoid-page group-[[data-pdf='true']]:shadow-none">
         <p class="uppercase font-extrabold mb-3"><%= t('calendar.working_days') %></p>
         <div class="py-1.5 px-4 bg-gray-200 border-b border-gray-200 font-extrabold flex items-center gap-2">
           <span class="shrink-0 w-[130px]"><%= t('calendar.date') %></span>

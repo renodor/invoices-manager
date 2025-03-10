@@ -2,10 +2,10 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <%= stylesheet_link_tag 'application', 'data-turbo-track': 'reload' %>
+    <%= stylesheet_link_tag 'tailwind', 'data-turbo-track': 'reload' %>
   </head>
 
-  <body class="pdf-layout">
+  <body class="group" data-pdf="true">
     <%= yield %>
   </body>
 </html>
