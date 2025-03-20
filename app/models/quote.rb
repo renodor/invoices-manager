@@ -5,6 +5,7 @@ class Quote < ApplicationRecord
 
   belongs_to :user
   has_many :line_items, dependent: :destroy
+  has_many :description_blocks, dependent: :destroy
 
   validates :date, :number, :client_name, presence: true
   validates :number, uniqueness: { scope: :user_id }

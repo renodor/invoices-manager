@@ -7,7 +7,7 @@ fr:
   back_to_invoices: Retour aux factures
   create_invoice_and_add_items: Créer la facture et ajouter des elements
   invoice_creation_success: Facture correctement crée
-  invoice_creation_error: Erreur lors de la création de votre facture. Vérifer que tous les champs sont correctement renseignés
+  invoice_creation_error: Erreur lors de la création de la facture. Vérifer que tous les champs sont correctement renseignés
   invoice_number: N° de facture
   advance_invoice: Facture d'acompte
   issue_date: Date d'émission
@@ -33,6 +33,8 @@ fr:
   quote_number: N° de devis
   back_to_quotes: Retour aux devis
   create_quote_and_add_items: Créer le devis et ajouter des elements
+  quote_creation_success: Devis correctement crée
+  quote_creation_error: Erreur lors de la création du devis. Vérifer que tous les champs sont correctement renseignés
   total_quote_in_year: Total des devis en %{year}
   description: Description
   qty: Qté
@@ -45,9 +47,9 @@ fr:
     with_tva: Avec TVA
     without_tva: Sans TVA
     outside_eu: Hors UE
-  title: titre
-  text: texte
-  list: liste
+  title: Titre
+  text: Texte
+  list: Liste
   list_placeholder: "- Premier élément\n- Deuxième élément\n- Troisième élément"
   good_for_agreement: Bon pour accord
   date_and_signature: Date et signature du client

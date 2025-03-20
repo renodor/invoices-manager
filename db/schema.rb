@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_13_172455) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_20_081925) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -47,6 +47,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_13_172455) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["invoice_id"], name: "index_days_on_invoice_id"
+  end
+
+  create_table "description_blocks", force: :cascade do |t|
+    t.text "text", null: false
+    t.integer "position", null: false
+    t.integer "flavor", null: false
+    t.bigint "quote_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quote_id"], name: "index_description_blocks_on_quote_id"
   end
 
   create_table "invoices", force: :cascade do |t|
@@ -138,6 +148,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_13_172455) do
   add_foreign_key "banks", "users"
   add_foreign_key "clients", "users"
   add_foreign_key "days", "invoices"
+  add_foreign_key "description_blocks", "quotes"
   add_foreign_key "invoices", "banks"
   add_foreign_key "invoices", "clients"
   add_foreign_key "invoices", "users"

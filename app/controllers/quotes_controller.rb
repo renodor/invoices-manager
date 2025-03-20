@@ -18,6 +18,7 @@ class QuotesController < ApplicationController
       redirect_to quote_path(@quote), notice: 'Quote was successfully created.'
     else
       @clients = current_user.clients.not_deleted
+      flash.now[:alert] = I18n.t('quote_creation_error')
       render :new, status: :unprocessable_entity
     end
   end

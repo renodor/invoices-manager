@@ -1,0 +1,3 @@
+<%= turbo_frame_tag nested_dom_id(@quote, @description_block) do %>
+  <%= render 'form', quote: @quote, description_block: @description_block %>
+<% end %>

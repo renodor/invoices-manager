@@ -13,7 +13,15 @@
   <div class="flex flex-col bg-white rounded-md shadow-md p-4 mb-6 print:break-inside-avoid-page group-[[data-pdf='true']]:shadow-none">
     <div class="flex justify-between mb-7">
       <div class="w-1/2 shrink-0 px-4 py-2">
-        <%= render 'documents/user', user: @quote.user %>
+        <p class="font-extrabold uppercase mb-3"><%= @quote.user.full_name %></p>
+        <p class="uppercase"><%= @quote.user.address1 %></p>
+        <p class="uppercase"><%= @quote.user.zipcode %> <%= @quote.user.city %></p>
+        <p><%= @quote.user.country %></p>
+        <div class="my-3">
+          <p><%= @quote.user.email %></p>
+          <p><%= @quote.user.website %></p>
+        </div>
+        <p class="font-extrabold">SIREN: <%= @quote.user.siren %></p>
       </div>
       <div class="w-1/2 shrink-0 text-right">
         <%= render 'client', quote: @quote %>
@@ -22,18 +30,18 @@
 
     <%= render 'infos', quote: @quote %>
 
-    <div class="document__body">
-      <div class="document__line-items">
+    <div class="px-4 py-3">
+      <div class="flex flex-col">
         <%= render 'line_items/header', document: @quote %>
         <%= turbo_frame_tag nested_dom_id(@quote, :line_items) do %>
           <%= render @quote.line_items.ordered, document: @quote %>
         <% end %>
         <%= turbo_frame_tag nested_dom_id(@quote, LineItem.new) %>
-        <%= button_to svg('plus'),
+        <%= button_to svg('plus', 'w-4 h-4'),
                     [:new, @quote, :line_item],
                     method: :get,
                     data: { turbo_frame: nested_dom_id(@quote, LineItem.new) },
-                    class: "btn btn--light btn--icon btn--spaced #{hide_on_pdf}" %>
+                    class: "btn-icon m-2 #{hide_on_pdf}" %>
         <%= turbo_frame_tag dom_id(@quote, :total) do %>
           <%= render 'documents/total', document: @quote %>
         <% end %>
@@ -44,7 +52,25 @@
       <%= render "agreement", quote: @quote %>
     <% end %>
   </div>
-  <%= turbo_frame_tag :description_blocks do %>
-    <%= render "description_blocks", quote: @quote %>
-  <% end %>
+  <div class="mb-4 bg-white rounded-md shadow-md print:break-inside-avoid-page group-[[data-pdf='true']]:shadow-none has-[div]:p-12 has-[form]:p-12">
+    <%= turbo_frame_tag nested_dom_id(@quote, 'description_blocks') do %>
+      <% @quote.description_blocks.each do |description_block| %>
+        <%= render description_block, quote: @quote %>
+      <% end %>
+    <% end %>
+    <%= turbo_frame_tag nested_dom_id(@quote, DescriptionBlock.new) %>
+  </div>
+  <div class="flex items-center gap-3 <%= hide_on_pdf %>">
+    <% ['title', 'text', 'list'].each do |flavor| %>
+      <%=
+        button_to [:new, @quote, :description_block],
+        method: :get,
+        data: { turbo_frame: nested_dom_id(@quote, DescriptionBlock.new) },
+        class: "btn-light flex items-center gap-1.5" do
+      %>
+        <%= hidden_field_tag :flavor, flavor %>
+        <%= svg('plus', 'w-5 h-5') %> <%= t(flavor) %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
