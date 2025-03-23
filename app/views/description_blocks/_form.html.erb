@@ -1,36 +1,42 @@
-<%=
-	simple_form_for [quote, description_block],
-	html: { class: 'flex gap-2 items-center' } do |f|
-%>
-		<%= f.input :flavor, as: :hidden, value: params['flavor'] %>
-		<% case description_block.flavor %>
-			<% when 'title' %>
-				<%=
-					f.input :text,
-					label: false,
-					placeholder: t('title').capitalize,
-					as: :string,
-					autofocus: true
-				%>
-			<% when 'text' %>
-				<%=
-					f.input :text,
-					label: false,
-					placeholder: t('text').capitalize,
-					input_html: { rows: 3, cols: 40 },
-					autofocus: true
-				%>
-			<% when 'list' %>
-				<%=
-					f.input :text,
-					label: false,
-					placeholder: t('list_placeholder'),
-					input_html: { rows: 3, cols: 40 },
-					autofocus: true
-				%>
-		<% end %>
-	<%= link_to svg('return', 'w-4 h-4'), quote_path(@quote), class: 'btn-icon' %>
-	<%= button_tag class: 'btn-icon-primary' do %>
-		<%= svg('check', 'w-4 h-4') %>
-	<% end %>
-<% end %>
+<div class="flex gap-2 items-center m-4">
+  <%= simple_form_for [description_block.quote, description_block] do |f| %>
+    <%= f.input :flavor, as: :hidden, value: params['flavor'] %>
+    <% case description_block.flavor %>
+      <% when 'title' %>
+        <%=
+          f.input :text,
+          label: false,
+          placeholder: t('title').capitalize,
+          as: :string,
+          autofocus: true,
+          input_html: { class: 'font-extrabold uppercase' }
+        %>
+      <% when 'text' %>
+        <%=
+          f.input :text,
+          label: false,
+          placeholder: t('text').capitalize,
+          input_html: { rows: 3, cols: 40 },
+          autofocus: true
+        %>
+      <% when 'list' %>
+        <%=
+          f.input :text,
+          label: false,
+          placeholder: t('list_placeholder'),
+          input_html: { rows: 3, cols: 40 },
+          autofocus: true
+        %>
+    <% end %>
+  <% end %>
+  <%= link_to svg('return', 'w-4 h-4'), quote_path(description_block.quote), class: 'btn-icon' %>
+  <%= button_tag class: 'btn-icon-primary', form: description_block.new_record? ? 'new_description_block' : "edit_description_block_#{description_block.id}" do %>
+    <%= svg('check', 'w-4 h-4') %>
+  <% end %>
+  <% unless %w[new create].include?(params[:action]) %>
+    <%= button_to svg('trash', 'w-4 h-4'),
+                  [description_block.quote, description_block],
+                  method: :delete,
+                  class: 'btn-icon' %>
+  <% end %>
+</div>

@@ -1,9 +1,9 @@
 <%# Step 1: empty the Turbo Frame containing the form %>
 <%= turbo_stream.update nested_dom_id(@quote, DescriptionBlock.new), "" %>
 
-<%# Step 2: append the created line item to the list %>
+<%# Step 2: append the created description_block to the list %>
 <%= turbo_stream.append nested_dom_id(@quote, 'description_blocks') do %>
-  <%= render @description_block, quote: @quote %>
+  <%= render @description_block %>
 <% end %>
 
 <%= render_turbo_stream_flash_messages %>

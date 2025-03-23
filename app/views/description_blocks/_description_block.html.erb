@@ -1,20 +1,17 @@
-
-<%= turbo_frame_tag nested_dom_id(quote, :description_block, description_block.position) do %>
-  <div class="px-4 py-1">
-      <% case description_block.flavor %>
-      <% when 'title' %>
-        <p class="uppercase font-extrabold"><%= description_block.text %></p>
-      <% when 'text' %>
-        <p><%= description_block.text %></p>
-      <% when 'list' %>
-        <ul class="list-disc">
-            <% description_block.text.split("\n").each do |item| %>
-            <li><%= item %></li>
-            <% end %>
-        </ul>
-      <% end %>
-      <%= link_to '',
-          [quote, description_block],
-          class: "full-absolute #{hide_on_pdf}" %>
+<%= turbo_frame_tag nested_dom_id(description_block.quote, description_block) do %>
+  <div class="relative px-4 py-1 duration-300 has-[a:hover]:shadow-md">
+    <% case description_block.flavor %>
+    <% when 'title' %>
+      <p class="uppercase font-extrabold mt-4"><%= description_block.text %></p>
+    <% when 'text' %>
+      <p><%= description_block.text %></p>
+    <% when 'list' %>
+      <ul class="list-disc ml-4">
+        <% description_block.text.split("\n- ").each do |item| %>
+          <li><%= item.gsub(/^- /, '') %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <%= link_to '', [:edit, description_block.quote, description_block], class: "absolute inset-0 #{hide_on_pdf}" %>
   </div>
 <% end %>

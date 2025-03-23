@@ -1,0 +1,5 @@
+<%= turbo_stream.replace nested_dom_id(@quote, @description_block) do %>
+  <%= render @description_block %>
+<% end %>
+
+<%= render_turbo_stream_flash_messages %>

@@ -13,15 +13,7 @@
   <div class="flex flex-col bg-white rounded-md shadow-md p-4 mb-6 print:break-inside-avoid-page group-[[data-pdf='true']]:shadow-none">
     <div class="flex justify-between mb-7">
       <div class="w-1/2 shrink-0 px-4 py-2">
-        <p class="font-extrabold uppercase mb-3"><%= @quote.user.full_name %></p>
-        <p class="uppercase"><%= @quote.user.address1 %></p>
-        <p class="uppercase"><%= @quote.user.zipcode %> <%= @quote.user.city %></p>
-        <p><%= @quote.user.country %></p>
-        <div class="my-3">
-          <p><%= @quote.user.email %></p>
-          <p><%= @quote.user.website %></p>
-        </div>
-        <p class="font-extrabold">SIREN: <%= @quote.user.siren %></p>
+        <%= render 'documents/user', user: @quote.user %>
       </div>
       <div class="w-1/2 shrink-0 text-right">
         <%= render 'client', quote: @quote %>
@@ -52,10 +44,10 @@
       <%= render "agreement", quote: @quote %>
     <% end %>
   </div>
-  <div class="mb-4 bg-white rounded-md shadow-md print:break-inside-avoid-page group-[[data-pdf='true']]:shadow-none has-[div]:p-12 has-[form]:p-12">
+  <div class="mb-4 bg-white rounded-md shadow-md print:break-inside-avoid-page group-[[data-pdf='true']]:shadow-none has-[div]:p-4 has-[form]:p-4">
     <%= turbo_frame_tag nested_dom_id(@quote, 'description_blocks') do %>
       <% @quote.description_blocks.each do |description_block| %>
-        <%= render description_block, quote: @quote %>
+        <%= render description_block %>
       <% end %>
     <% end %>
     <%= turbo_frame_tag nested_dom_id(@quote, DescriptionBlock.new) %>
