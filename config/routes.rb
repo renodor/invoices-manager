@@ -25,7 +25,11 @@ Rails.application.routes.draw do
 
   resources :quotes, only: %i[index new create show destroy] do
     resources :line_items
-    resources :description_blocks
+    resources :description_blocks do
+      member do
+        patch :update_position
+      end
+    end
     member do
       get :edit_client
       patch :update_client
@@ -34,11 +38,6 @@ Rails.application.routes.draw do
       get :edit_with_agreement
       patch :update_with_agreement
       get :export_to_pdf
-      # get :new_description_block
-      # patch :create_description_block
-      # get :edit_description_block
-      # patch :update_description_block
-      # delete :destroy_description_block
     end
   end
 

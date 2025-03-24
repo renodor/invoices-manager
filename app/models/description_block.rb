@@ -6,7 +6,6 @@ class DescriptionBlock < ApplicationRecord
   scope :ordered, -> { order(:position) }
 
   validates :text, :position, :flavor, presence: true
-  validates :position, uniqueness: { scope: :quote_id }
 
   enum :flavor, {
     title: 0,

@@ -46,9 +46,7 @@
   </div>
   <div class="mb-4 bg-white rounded-md shadow-md print:break-inside-avoid-page group-[[data-pdf='true']]:shadow-none has-[div]:p-4 has-[form]:p-4">
     <%= turbo_frame_tag nested_dom_id(@quote, 'description_blocks') do %>
-      <% @quote.description_blocks.each do |description_block| %>
-        <%= render description_block %>
-      <% end %>
+      <%= render @quote.description_blocks.ordered %>
     <% end %>
     <%= turbo_frame_tag nested_dom_id(@quote, DescriptionBlock.new) %>
   </div>

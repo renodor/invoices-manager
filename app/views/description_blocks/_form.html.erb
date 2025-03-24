@@ -38,5 +38,15 @@
                   [description_block.quote, description_block],
                   method: :delete,
                   class: 'btn-icon' %>
+    <div class="flex gap-2 ml-4">
+      <%= button_to svg('chevron-up', 'w-4 h-4'),
+                    update_position_quote_description_block_path(description_block.quote, description_block, move: :up),
+                    method: :patch,
+                    class: 'btn-icon' %>
+      <%= button_to svg('chevron-up', 'w-4 h-4 rotate-180'),
+                    update_position_quote_description_block_path(description_block.quote, description_block, move: :down),
+                    method: :patch,
+                    class: 'btn-icon' %>
+    </div>
   <% end %>
 </div>
