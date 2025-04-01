@@ -6,13 +6,18 @@ fr:
   new_invoice: Nouvelle facture
   back_to_invoices: Retour aux factures
   create_invoice_and_add_items: Créer la facture et ajouter des elements
-  invoice_creation_success: Facture correctement crée
+  invoice_creation_success: Facture correctement créée
+  invoice_update_success: Facture correctement modifiée
+  invoice_destroy_success: Facture correctement détruite
   invoice_creation_error: Erreur lors de la création de la facture. Vérifer que tous les champs sont correctement renseignés
   invoice_number: N° de facture
   advance_invoice: Facture d'acompte
   issue_date: Date d'émission
   total_invoice_in_year: Total facturé en %{year}
   locked_invoice: Facture bloquée non editable
+  line_item_creation_success: Ligne correctement créée
+  line_item_update_success: Ligne correctement modifiée
+  line_item_destroy_success: Ligne correctement détruite
   no_tva_explaination: TVA non applicable, article %{tva_cgi_article} du Code Général des Impôts
   payment_informations: Informations de paiement
   payment_label: Libellé
@@ -25,6 +30,8 @@ fr:
     remove_calendar: Enlever le calendrier
     working_hours: Heures travaillées
     comment: Commentaire
+  calendar_creation_success: Calendrier correctement créé
+  calendar_destroy_success: Calendrier correctement détruit
   are_you_sure: Atttennntion, sûr de toi?
   quote:
     one: Devis
@@ -33,10 +40,15 @@ fr:
   quote_number: N° de devis
   back_to_quotes: Retour aux devis
   create_quote_and_add_items: Créer le devis et ajouter des elements
-  quote_creation_success: Devis correctement crée
+  quote_creation_success: Devis correctement créé
+  quote_update_success: Devis correctement modifié
+  quote_destroy_success: Devis correctement détruit
   quote_creation_error: Erreur lors de la création du devis. Vérifer que tous les champs sont correctement renseignés
   total_quote_in_year: Total des devis en %{year}
   description: Description
+  description_block_creation_success: Block de description correctement créé
+  description_block_update_success: Block de description correctement modifié
+  description_block_destroy_success: Block de description correctement détruit
   qty: Qté
   unit_price: Prix unitaire
   vat: TVA
@@ -54,6 +66,7 @@ fr:
   good_for_agreement: Bon pour accord
   date_and_signature: Date et signature du client
   good_for_agreement_mention: précédées de la mention "Bon pour accord"
+  day_update_success: Jour correctement modifié
   number:
     currency:
       format:

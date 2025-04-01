@@ -5,3 +5,5 @@
 <%= turbo_stream.update dom_id(@invoice, :calendar_total) do %>
   <%= render 'calendar_total', invoice: @invoice %>
 <% end %>
+
+<%= render_turbo_stream_flash_messages %>

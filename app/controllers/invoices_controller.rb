@@ -43,7 +43,7 @@ class InvoicesController < ApplicationController
 
   def update
     if @invoice.update(invoice_params)
-      redirect_to invoice_path(@invoice), notice: 'Invoice was successfully updated.'
+      redirect_to invoice_path(@invoice), notice: I18n.t('invoice_update_success')
     else
       render :show, status: :unprocessable_entity
     end
@@ -60,8 +60,8 @@ class InvoicesController < ApplicationController
     if @invoice.save
       @client = @invoice.client
       respond_to do |format|
-        format.html { redirect_to invoices_path, notice: 'Invoice was successfully updated.' }
-        format.turbo_stream { flash.now[:notice] = 'Invoice was successfully updated.' }
+        format.html { redirect_to invoices_path, notice: I18n.t('invoice_update_success') }
+        format.turbo_stream { flash.now[:notice] = I18n.t('invoice_update_success') }
       end
     else
       render :edit_client, status: :unprocessable_entity
@@ -74,8 +74,8 @@ class InvoicesController < ApplicationController
     if @invoice.update(invoice_params)
       @bank = @invoice.bank
       respond_to do |format|
-        format.html { redirect_to invoices_path, notice: 'Invoice was successfully updated.' }
-        format.turbo_stream { flash.now[:notice] = 'Invoice was successfully updated.' }
+        format.html { redirect_to invoices_path, notice: I18n.t('invoice_update_success') }
+        format.turbo_stream { flash.now[:notice] = I18n.t('invoice_update_success') }
       end
     else
       render :edit_infos, status: :unprocessable_entity
@@ -91,8 +91,8 @@ class InvoicesController < ApplicationController
     if @invoice.update(invoice_params)
       @bank = @invoice.bank
       respond_to do |format|
-        format.html { redirect_to invoices_path, notice: 'Invoice was successfully updated.' }
-        format.turbo_stream { flash.now[:notice] = 'Invoice was successfully updated.' }
+        format.html { redirect_to invoices_path, notice: I18n.t('invoice_update_success') }
+        format.turbo_stream { flash.now[:notice] = I18n.t('invoice_update_success') }
       end
     else
       render :edit_bank, status: :unprocessable_entity
@@ -102,7 +102,7 @@ class InvoicesController < ApplicationController
   def destroy
     @invoice.destroy(do_i_really_want_to_do_it: !@invoice.locked?)
 
-    redirect_to invoices_path, notice: 'Invoice was successfully destroyed.'
+    redirect_to invoices_path, notice: I18n.t('invoice_destroy_success')
   end
 
   def export_to_pdf

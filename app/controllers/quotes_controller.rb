@@ -15,7 +15,7 @@ class QuotesController < ApplicationController
     @quote = current_user.quotes.new(quote_params)
 
     if @quote.save
-      redirect_to quote_path(@quote), notice: 'Quote was successfully created.'
+      redirect_to quote_path(@quote), notice: I18n.t('quote_creation_success')
     else
       @clients = current_user.clients.not_deleted
       flash.now[:alert] = I18n.t('quote_creation_error')
@@ -28,7 +28,7 @@ class QuotesController < ApplicationController
   def destroy
     @quote.destroy
 
-    redirect_to quotes_path, notice: 'Quote was successfully destroyed.'
+    redirect_to quotes_path, notice: I18n.t('quote_destroy_success')
   end
 
   def edit_client; end
@@ -36,8 +36,8 @@ class QuotesController < ApplicationController
   def update_client
     if @quote.update(quote_params)
       respond_to do |format|
-        format.html { redirect_to quotes_path, notice: 'Quote was successfully updated.' }
-        format.turbo_stream { flash.now[:notice] = 'Quote was successfully updated.' }
+        format.html { redirect_to quotes_path, notice: I18n.t('quote_update_success') }
+        format.turbo_stream { flash.now[:notice] = I18n.t('quote_update_success') }
       end
     else
       render :edit_client, status: :unprocessable_entity
@@ -49,8 +49,8 @@ class QuotesController < ApplicationController
   def update_infos
     if @quote.update(quote_params)
       respond_to do |format|
-        format.html { redirect_to quotes_path, notice: 'Quote was successfully updated.' }
-        format.turbo_stream { flash.now[:notice] = 'Quote was successfully updated.' }
+        format.html { redirect_to quotes_path, notice: I18n.t('quote_update_success') }
+        format.turbo_stream { flash.now[:notice] = I18n.t('quote_update_success') }
       end
     else
       render :edit_infos, status: :unprocessable_entity
