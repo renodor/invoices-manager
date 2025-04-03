@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def render_pdf(locals:, file_name:)
     html = render_to_string(action: :show, layout: 'pdf', formats: [:html], locals: locals)
-    pre_processed_pdf = Grover::HTMLPreprocessor.process(html, 'http://localhost:3000/', 'http')
+    pre_processed_pdf = Grover::HTMLPreprocessor.process(html, Rails.application.config.asset_host, 'http')
 
     respond_to do |format|
       format.html { render html: html }
