@@ -1,6 +1,6 @@
 # frozen_string_literal:true
 
-unless ENV["ASSET_PRECOMPILE"]
+unless ENV["ASSETS_PRECOMPILE"]
   debugger
   Grover.configure do |config|
     config.options = {
