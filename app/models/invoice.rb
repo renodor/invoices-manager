@@ -15,7 +15,7 @@ class Invoice < ApplicationRecord
   validates :locked, inclusion: { in: [true, false] }
 
   scope :ordered, -> { order(id: :desc) }
-  scope :current_year, -> { where('date > ?', DateTime.new(Time.current.year, 1, 1)) }
+  scope :current_year, -> { where("date > ?", DateTime.new(Time.current.year, 1, 1)) }
 
   enum :flavor, {
     with_tva: 0,
@@ -27,7 +27,7 @@ class Invoice < ApplicationRecord
   before_validation :set_bank, if: :new_record?
 
   def pretty_date
-    date.strftime('%d/%m/%Y')
+    date.strftime("%d/%m/%Y")
   end
 
   def pdf_file_name
@@ -36,10 +36,10 @@ class Invoice < ApplicationRecord
 
   def tva_cgi_article
     case flavor
-    when 'without_tva'
-      '293 B'
-    when 'outside_eu'
-      '259-1'
+    when "without_tva"
+      "293 B"
+    when "outside_eu"
+      "259-1"
     end
   end
 
@@ -48,7 +48,7 @@ class Invoice < ApplicationRecord
   def set_date_and_number
     self.date = Date.current if date.blank?
 
-    last_number = user&.invoices&.current_year&.last&.number&.split('-')&.last.to_i
+    last_number = user&.invoices&.current_year&.last&.number&.split("-")&.last.to_i
     self.number = "FAC-#{Time.current.year}-#{last_number + 1}"
   end
 

@@ -7,22 +7,22 @@ Client.all.each { |client| client.destroy!(do_i_really_want_to_do_it: true) }
 User.all.each { |user| user.destroy!(do_i_really_want_to_do_it: true) }
 
 user = User.create!(
-  email: 'batman@gmail.com',
-  password: 'Azerty123',
-  first_name: 'Bruce',
-  last_name: 'Wayne',
-  address1: '10 Rue de par ici',
-  zipcode: '00000',
-  city: 'Cool City',
-  country: 'France',
-  website: 'www.website.co',
-  siren: '000 000 000',
+  email: "batman@gmail.com",
+  password: "Azerty123",
+  first_name: "Bruce",
+  last_name: "Wayne",
+  address1: "10 Rue de par ici",
+  zipcode: "00000",
+  city: "Cool City",
+  country: "France",
+  website: "www.website.co",
+  siren: "000 000 000",
 )
 
 bank = Bank.create!(
-  name: 'Cool bank',
-  bic: 'AAAAAAAA',
-  iban: 'FR76 0000 0000 0000 0000 0000 000',
+  name: "Cool bank",
+  bic: "AAAAAAAA",
+  iban: "FR76 0000 0000 0000 0000 0000 000",
   is_default: true,
   user: user
 )
@@ -31,9 +31,9 @@ bank = Bank.create!(
   Client.create!(
     name: "Cool Client #{n + 1}",
     address1: "#{n + 1} Rue de là bas",
-    zipcode: '00000',
-    city: 'Cool City',
-    country: 'France',
+    zipcode: "00000",
+    city: "Cool City",
+    country: "France",
     user: user
   )
 end
@@ -43,7 +43,7 @@ client = Client.first
 5.times do |n|
   invoice = Invoice.new(
     date: DateTime.current,
-    title: 'Services de développement web',
+    title: "Services de développement web",
     user: user,
     bank: bank,
     client: client,
@@ -76,13 +76,13 @@ end
 5.times do |n|
   quote = Quote.new(
     date: DateTime.current,
-    title: 'Services de développement web',
+    title: "Services de développement web",
     user: user,
     client_name: "Cool client #{n + 1}",
-    client_address1: '1 Rue cool',
-    client_zipcode: '13004',
-    client_city: 'Marseille',
-    client_country: 'France',
+    client_address1: "1 Rue cool",
+    client_zipcode: "13004",
+    client_city: "Marseille",
+    client_country: "France",
     flavor: [0, 1, 2].sample,
     with_agreement: [true, false].sample
   )
@@ -96,5 +96,3 @@ end
     )
   end
 end
-
-

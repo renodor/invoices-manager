@@ -13,8 +13,8 @@ class DaysController < ApplicationController
   def update
     if @day.update(day_params)
       respond_to do |format|
-        format.html { redirect_to invoice_path(@invoice), notice: I18n.t('day_update_success') }
-        format.turbo_stream { flash.now[:notice] = I18n.t('day_update_success') }
+        format.html { redirect_to invoice_path(@invoice), notice: I18n.t("day_update_success") }
+        format.turbo_stream { flash.now[:notice] = I18n.t("day_update_success") }
       end
     else
       render :edit, status: :unprocessable_entity
@@ -30,8 +30,8 @@ class DaysController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to invoice_path(@invoice), notice: I18n.t('calendar_creation_success') }
-      format.turbo_stream { flash.now[:notice] = I18n.t('calendar_creation_success') }
+      format.html { redirect_to invoice_path(@invoice), notice: I18n.t("calendar_creation_success") }
+      format.turbo_stream { flash.now[:notice] = I18n.t("calendar_creation_success") }
     end
   end
 
@@ -39,8 +39,8 @@ class DaysController < ApplicationController
     @invoice.days.destroy_all
 
     respond_to do |format|
-      format.html { redirect_to invoice_path(@invoice), notice: I18n.t('calendar_destroy_success') }
-      format.turbo_stream { flash.now[:notice] = I18n.t('calendar_destroy_success') }
+      format.html { redirect_to invoice_path(@invoice), notice: I18n.t("calendar_destroy_success") }
+      format.turbo_stream { flash.now[:notice] = I18n.t("calendar_destroy_success") }
     end
   end
 

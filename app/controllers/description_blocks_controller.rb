@@ -14,8 +14,8 @@ class DescriptionBlocksController < ApplicationController
 
     if @description_block.save
       respond_to do |format|
-        format.html { redirect_to quote_path(@quote), notice: I18n.t('description_block_creation_success') }
-        format.turbo_stream { flash.now[:notice] = I18n.t('description_block_creation_success') }
+        format.html { redirect_to quote_path(@quote), notice: I18n.t("description_block_creation_success") }
+        format.turbo_stream { flash.now[:notice] = I18n.t("description_block_creation_success") }
       end
     else
       render :new, status: :unprocessable_entity
@@ -28,8 +28,8 @@ class DescriptionBlocksController < ApplicationController
     @description_block.text = description_block_params[:text]
     if @description_block.save
       respond_to do |format|
-        format.html { redirect_to quote_path(@quote), notice: I18n.t('description_block_update_success') }
-        format.turbo_stream { flash.now[:notice] = I18n.t('description_block_update_success') }
+        format.html { redirect_to quote_path(@quote), notice: I18n.t("description_block_update_success") }
+        format.turbo_stream { flash.now[:notice] = I18n.t("description_block_update_success") }
       end
     else
       render :new, status: :unprocessable_entity
@@ -39,10 +39,10 @@ class DescriptionBlocksController < ApplicationController
   def update_position
     @description_block = @quote.description_blocks.find(params[:id])
 
-    if params[:move] == 'up'
-      other_block = @quote.description_blocks.where('position < ?', @description_block.position).ordered.last
-    elsif params[:move] == 'down'
-      other_block = @quote.description_blocks.where('position > ?', @description_block.position).ordered.first
+    if params[:move] == "up"
+      other_block = @quote.description_blocks.where("position < ?", @description_block.position).ordered.last
+    elsif params[:move] == "down"
+      other_block = @quote.description_blocks.where("position > ?", @description_block.position).ordered.first
     end
 
     if other_block
@@ -58,8 +58,8 @@ class DescriptionBlocksController < ApplicationController
     @description_block.destroy
 
     respond_to do |format|
-      format.html { redirect_to quote_path(@quote), notice: I18n.t('description_block_destroy_success') }
-      format.turbo_stream { flash.now[:notice] = I18n.t('description_block_destroy_success') }
+      format.html { redirect_to quote_path(@quote), notice: I18n.t("description_block_destroy_success") }
+      format.turbo_stream { flash.now[:notice] = I18n.t("description_block_destroy_success") }
     end
   end
 

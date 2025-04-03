@@ -1,7 +1,7 @@
 # frozen_string_literal:true
 
 Rails.application.routes.draw do
-  root to: 'invoices#index'
+  root to: "invoices#index"
 
   devise_for :users
   resources :invoices do
@@ -41,5 +41,5 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/sign_in_demo_user', to: 'pages#sign_in_demo_user'
+  get "/sign_in_demo_user", to: "pages#sign_in_demo_user"
 end

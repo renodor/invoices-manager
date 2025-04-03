@@ -15,10 +15,10 @@ class QuotesController < ApplicationController
     @quote = current_user.quotes.new(quote_params)
 
     if @quote.save
-      redirect_to quote_path(@quote), notice: I18n.t('quote_creation_success')
+      redirect_to quote_path(@quote), notice: I18n.t("quote_creation_success")
     else
       @clients = current_user.clients.not_deleted
-      flash.now[:alert] = I18n.t('quote_creation_error')
+      flash.now[:alert] = I18n.t("quote_creation_error")
       render :new, status: :unprocessable_entity
     end
   end
@@ -28,7 +28,7 @@ class QuotesController < ApplicationController
   def destroy
     @quote.destroy
 
-    redirect_to quotes_path, notice: I18n.t('quote_destroy_success')
+    redirect_to quotes_path, notice: I18n.t("quote_destroy_success")
   end
 
   def edit_client; end
@@ -36,8 +36,8 @@ class QuotesController < ApplicationController
   def update_client
     if @quote.update(quote_params)
       respond_to do |format|
-        format.html { redirect_to quotes_path, notice: I18n.t('quote_update_success') }
-        format.turbo_stream { flash.now[:notice] = I18n.t('quote_update_success') }
+        format.html { redirect_to quotes_path, notice: I18n.t("quote_update_success") }
+        format.turbo_stream { flash.now[:notice] = I18n.t("quote_update_success") }
       end
     else
       render :edit_client, status: :unprocessable_entity
@@ -49,8 +49,8 @@ class QuotesController < ApplicationController
   def update_infos
     if @quote.update(quote_params)
       respond_to do |format|
-        format.html { redirect_to quotes_path, notice: I18n.t('quote_update_success') }
-        format.turbo_stream { flash.now[:notice] = I18n.t('quote_update_success') }
+        format.html { redirect_to quotes_path, notice: I18n.t("quote_update_success") }
+        format.turbo_stream { flash.now[:notice] = I18n.t("quote_update_success") }
       end
     else
       render :edit_infos, status: :unprocessable_entity
@@ -68,8 +68,8 @@ class QuotesController < ApplicationController
   def create_description_block
     @quote.description_blocks << {
       type: params[:block_type],
-      value: params[:block_type] == 'list' ? params[:block_value].gsub('- ', '').split("\n") : params[:block_value],
-      position: @quote.description_blocks&.last&.dig('position').to_i + 1
+      value: params[:block_type] == "list" ? params[:block_value].gsub("- ", "").split("\n") : params[:block_value],
+      position: @quote.description_blocks&.last&.dig("position").to_i + 1
     }
 
     @quote.save!
@@ -81,7 +81,7 @@ class QuotesController < ApplicationController
 
   def update_description_block
     description_block = find_description_block_by_position
-    description_block['value'] = params[:block_type] == 'list' ? params[:block_value].gsub('- ', '').split("\n") : params[:block_value]
+    description_block["value"] = params[:block_type] == "list" ? params[:block_value].gsub("- ", "").split("\n") : params[:block_value]
     @quote.save!
   end
 
@@ -110,6 +110,6 @@ class QuotesController < ApplicationController
   end
 
   def find_description_block_by_position
-    @quote.description_blocks.detect { |block| block['position'] == params[:block_position].to_i }
+    @quote.description_blocks.detect { |block| block["position"] == params[:block_position].to_i }
   end
 end

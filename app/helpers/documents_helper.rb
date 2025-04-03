@@ -2,7 +2,7 @@
 
 module DocumentsHelper
   def hide_on_pdf
-    'hidden' if params[:action] == 'export_to_pdf'
+    "hidden" if params[:action] == "export_to_pdf"
   end
 
   def flavors_select_hash

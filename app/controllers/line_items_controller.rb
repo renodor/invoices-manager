@@ -13,8 +13,8 @@ class LineItemsController < ApplicationController
 
     if @line_item.save
       respond_to do |format|
-        format.html { redirect_to invoice_path(@invoice), notice: I18n.t('line_item_creation_success') }
-        format.turbo_stream { flash.now[:notice] = I18n.t('line_item_creation_success') }
+        format.html { redirect_to invoice_path(@invoice), notice: I18n.t("line_item_creation_success") }
+        format.turbo_stream { flash.now[:notice] = I18n.t("line_item_creation_success") }
       end
     else
       render :new, status: :unprocessable_entity
@@ -26,8 +26,8 @@ class LineItemsController < ApplicationController
   def update
     if @line_item.update(line_item_params)
       respond_to do |format|
-        format.html { redirect_to invoice_path(@invoice), notice: I18n.t('line_item_update_success') }
-        format.turbo_stream { flash.now[:notice] = I18n.t('line_item_update_success') }
+        format.html { redirect_to invoice_path(@invoice), notice: I18n.t("line_item_update_success") }
+        format.turbo_stream { flash.now[:notice] = I18n.t("line_item_update_success") }
       end
     else
       render :edit, status: :unprocessable_entity
@@ -38,8 +38,8 @@ class LineItemsController < ApplicationController
     @line_item.destroy
 
     respond_to do |format|
-      format.html { redirect_to invoice_path(@document), notice: I18n.t('line_item_destroy_success') }
-      format.turbo_stream { flash.now[:notice] = I18n.t('line_item_destroy_success') }
+      format.html { redirect_to invoice_path(@document), notice: I18n.t("line_item_destroy_success") }
+      format.turbo_stream { flash.now[:notice] = I18n.t("line_item_destroy_success") }
     end
   end
 

@@ -6,7 +6,7 @@ SimpleForm.setup do |config|
     b.use :html5
     b.use :placeholder
     b.use :label
-    b.use :input, class: 'form-input'
+    b.use :input, class: "form-input"
   end
 
   # Default configuration

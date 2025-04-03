@@ -10,7 +10,7 @@ module FinancialMethods
   end
 
   def tva
-    flavor == 'with_tva' ? total_without_taxes * TVA : 0
+    flavor == "with_tva" ? total_without_taxes * TVA : 0
   end
 
   def total

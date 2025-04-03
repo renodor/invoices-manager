@@ -11,7 +11,7 @@ class Quote < ApplicationRecord
   validates :number, uniqueness: { scope: :user_id }
 
   scope :ordered, -> { order(id: :desc) }
-  scope :current_year, -> { where('date > ?', DateTime.new(Time.current.year, 1, 1)) }
+  scope :current_year, -> { where("date > ?", DateTime.new(Time.current.year, 1, 1)) }
 
   enum :flavor, {
     with_tva: 0,
@@ -22,7 +22,7 @@ class Quote < ApplicationRecord
   after_initialize :set_date_and_number, if: :new_record?
 
   def pretty_date
-    date.strftime('%d/%m/%Y')
+    date.strftime("%d/%m/%Y")
   end
 
   def pdf_file_name
@@ -31,10 +31,10 @@ class Quote < ApplicationRecord
 
   def tva_cgi_article
     case flavor
-    when 'without_tva'
-      '293 B'
-    when 'outside_eu'
-      '259-1'
+    when "without_tva"
+      "293 B"
+    when "outside_eu"
+      "259-1"
     end
   end
 
@@ -43,7 +43,7 @@ class Quote < ApplicationRecord
   def set_date_and_number
     self.date = Date.current if date.blank?
 
-    last_number = user&.quotes&.current_year&.last&.number&.split('-')&.last.to_i
+    last_number = user&.quotes&.current_year&.last&.number&.split("-")&.last.to_i
     self.number = "DEV-#{Time.current.year}-#{last_number + 1}"
   end
 end
