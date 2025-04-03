@@ -1,5 +1,5 @@
 # Load environment variables from .env file
-# <% require "dotenv"; Dotenv.load(".env") %>
+<% require "dotenv"; Dotenv.load(".env") %>
 
 # Name of your application. Used to uniquely configure containers.
 service: invoices-manager
