@@ -1,7 +1,6 @@
 # frozen_string_literal:true
 
 unless ENV["ASSETS_PRECOMPILE"]
-  debugger
   Grover.configure do |config|
     config.options = {
       format: "A4",
