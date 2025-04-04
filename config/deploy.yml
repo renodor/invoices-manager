@@ -2,10 +2,10 @@
 <% require "dotenv"; Dotenv.load(".env") %>
 
 # Name of your application. Used to uniquely configure containers.
-service: invoices-manager
+service: invoices_manager
 
 # Name of the container image.
-image: renodor/invoices-manager
+image: renodor/invoices_manager
 
 # Deploy to these servers.
 servers:
@@ -47,7 +47,7 @@ builder:
 env:
   clear:
     SOLID_QUEUE_IN_PUMA: true
-    DB_HOST: invoices-manager-db
+    DB_HOST: invoices_manager-db
   secret:
     - RAILS_MASTER_KEY
     - POSTGRES_USER
