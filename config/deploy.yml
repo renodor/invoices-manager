@@ -46,7 +46,6 @@ builder:
 #
 env:
   clear:
-    SOLID_QUEUE_IN_PUMA: true
     DB_HOST: invoices_manager-db
   secret:
     - RAILS_MASTER_KEY
