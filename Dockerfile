@@ -61,7 +61,7 @@ RUN apt-get update -qq && \
 # Install puppeteer in /usr/local/lib
 RUN cd /usr/local/lib && \
     npm init -y && \
-    npm install puppeteer &&
+    npm install puppeteer
 
 # Copy built artifacts: gems, application
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
