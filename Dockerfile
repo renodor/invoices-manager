@@ -62,7 +62,7 @@ RUN apt-get update -qq && \
 RUN cd /usr/local/lib && \
     npm init -y && \
     npm install puppeteer && \
-    npx puppeteer browsers install chrome && \
+    npx puppeteer browsers install chrome
 
 # Copy built artifacts: gems, application
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
