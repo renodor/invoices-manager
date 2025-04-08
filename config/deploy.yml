@@ -5,7 +5,7 @@
 service: invoices_manager
 
 # Name of the container image.
-image: ghcr.io/renodor/invoices_manager
+image: renodor/invoices_manager
 
 # Deploy to these servers.
 servers:
