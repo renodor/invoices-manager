@@ -7,7 +7,7 @@ unless ENV["ASSETS_PRECOMPILE"]
       print_background: true,
       timezone: "Europe/Paris",
       wait_for_function: "document.fonts.ready",
-      root_path: "#{`npm prefix -g`.strip}/lib"
+      root_path: "/usr/local/lib"
     }
   end
 end
