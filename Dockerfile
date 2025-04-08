@@ -62,7 +62,6 @@ RUN apt-get update -qq && \
 RUN cd /usr/local/lib && \
     npm init -y && \
     npm install puppeteer && \
-    chown -R rails:rails /usr/local/lib/node_modules /home/rails/.cache
 
 # Copy built artifacts: gems, application
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
@@ -71,7 +70,7 @@ COPY --from=build /rails /rails
 # Run and own only the runtime files as a non-root user for security
 RUN groupadd --system --gid 1000 rails && \
     useradd rails --uid 1000 --gid 1000 --create-home --shell /bin/bash && \
-    chown -R rails:rails db log storage tmp
+    chown -R rails:rails db log storage tmp .cache
 USER 1000:1000
 
 # Entrypoint prepares the database.
