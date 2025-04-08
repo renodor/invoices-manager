@@ -61,7 +61,7 @@ RUN apt-get update -qq && \
 # Install puppeteer in /usr/local/lib
 RUN cd /usr/local/lib && \
     npm init -y && \
-    npm install puppeteer
+    npm install puppeteer && \
     chown -R rails:rails /usr/local/lib/node_modules /home/rails/.cache
 
 # Copy built artifacts: gems, application
