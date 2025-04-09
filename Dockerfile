@@ -51,10 +51,6 @@ RUN ASSETS_PRECOMPILE=1 SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 # Final stage for app image
 FROM base
 
-# Create rails user first
-RUN groupadd --system --gid 1000 rails && \
-    useradd rails --uid 1000 --gid 1000 --create-home --shell /bin/bash
-
 # Install Node.js and Puppeteer
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
@@ -68,7 +64,6 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 
 RUN cd /usr/local/lib && \
-    # npm init -y && \
     npm install puppeteer
 
 # Copy built artifacts: gems, application
@@ -76,7 +71,9 @@ COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --from=build /rails /rails
 
 # Set final permissions
-RUN chown -R rails:rails db log storage tmp
+RUN groupadd --system --gid 1000 rails && \
+    useradd rails --uid 1000 --gid 1000 --create-home --shell /bin/bash && \
+    chown -R rails:rails db log storage tmp
 USER 1000:1000
 
 # Entrypoint prepares the database.
