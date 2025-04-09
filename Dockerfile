@@ -59,7 +59,7 @@ RUN groupadd --system --gid 1000 rails && \
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
     nodejs \
-    npm \
+    npm && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Set up Puppeteer
