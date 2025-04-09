@@ -47,6 +47,7 @@ builder:
 env:
   clear:
     DB_HOST: invoices_manager-db
+    GROVER_NO_SANDBOX: true
   secret:
     - RAILS_MASTER_KEY
     - POSTGRES_USER
