@@ -60,7 +60,7 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
     nodejs \
     npm \
-    chromium && \
+    # chromium && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Set up Puppeteer
