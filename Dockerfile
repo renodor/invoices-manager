@@ -63,7 +63,8 @@ RUN apt-get update -qq && \
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 
-RUN npm install puppeteer
+RUN cd /usr/local/lib && \
+    npm install puppeteer
 
 # Copy built artifacts: gems, application
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
