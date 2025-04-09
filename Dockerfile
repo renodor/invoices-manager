@@ -59,15 +59,16 @@ RUN groupadd --system --gid 1000 rails && \
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
     nodejs \
-    npm && \
+    npm \
+    chromium && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Set up Puppeteer
-# ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 
 RUN cd /usr/local/lib && \
-    npm init -y && \
+    # npm init -y && \
     npm install puppeteer
 
 # Copy built artifacts: gems, application
