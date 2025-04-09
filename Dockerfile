@@ -65,7 +65,7 @@ RUN apt-get update -qq && \
 
 # Set up Puppeteer
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
-ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 
 RUN cd /usr/local/lib && \
     # npm init -y && \
