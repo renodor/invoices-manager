@@ -64,14 +64,12 @@ RUN apt-get update -qq && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Set up Puppeteer
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
-    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+# ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+#     PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 
 RUN cd /usr/local/lib && \
     npm init -y && \
     npm install puppeteer
-    # mkdir -p /home/rails/.cache/puppeteer && \
-    # chown -R rails:rails /usr/local/lib/node_modules /home/rails/.cache
 
 # Copy built artifacts: gems, application
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
